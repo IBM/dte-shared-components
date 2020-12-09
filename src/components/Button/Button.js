@@ -2,10 +2,10 @@
 import React from "react";
 // import { Button as CarbonButton } from "carbon-components-react";
 
-const Button = ({title}) => {
-//   return <CarbonButton {...props} />;
-    return <button className="testingBTN">{title}</button>
-};
+const Button = ({ title }) => (
+  //   return <CarbonButton {...props} />;
+  <button className="testingBTN">{title}</button>
+);
 
 Button.defaultProps = {
   size: "default",
