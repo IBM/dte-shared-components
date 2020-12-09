@@ -1,10 +1,10 @@
 // DTE 2.0 Button
 import React from "react";
-// import { Button as CarbonButton } from "carbon-components-react";
+import { Button as CarbonButton } from "carbon-components-react";
 
-const Button = ({ title }) => (
-  //   return <CarbonButton {...props} />;
-  <button className="testingBTN">{title}</button>
+const Button = (props) => (
+  <CarbonButton {...props} />
+  //<button className="testingBTN">{title}</button>
 );
 
 Button.defaultProps = {
