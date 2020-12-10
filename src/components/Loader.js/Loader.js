@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-//import PropTypes from "prop-types";
-
 import { ConfirmModal, Loading } from ".";
 
 const LOADING_TIMEOUT = 750;
@@ -202,15 +200,5 @@ Loader.defaultProps = {
   description: "Loading...",
   style: { margin: "25vh auto 0" },
 };
-
-// Loader.propTypes = {
-//   initial: PropTypes.bool,
-//   children: PropTypes.any,
-//   router: PropTypes.any,
-//   history: PropTypes.any,
-//   messages: PropTypes.string,
-//   description: PropTypes.string,
-//   style: PropTypes.object,
-// };
 
 export default Loader;
