@@ -1,0 +1,111 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));
+
+var _CardGroup = require("../CardGroup");
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _ContentSection = _interopRequireDefault(require("../../internal/components/ContentSection/ContentSection"));
+
+var _settings = _interopRequireDefault(require("@carbon/ibmdotcom-utilities/lib/utilities/settings/settings"));
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _settings2 = _interopRequireDefault(require("carbon-components/umd/globals/js/settings"));
+
+/**
+ * Copyright IBM Corp. 2016, 2020
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var stablePrefix = _settings.default.stablePrefix;
+var prefix = _settings2.default.prefix;
+/**
+ * CardSectionImages pattern it is Cards with images.
+ */
+
+var CardSectionImages = function CardSectionImages(_ref) {
+  var cards = _ref.cards,
+      theme = _ref.theme,
+      otherProps = (0, _objectWithoutProperties2.default)(_ref, ["cards", "theme"]);
+  var cardsWithImages = cards.filter(function (_ref2) {
+    var image = _ref2.image,
+        eyebrow = _ref2.eyebrow,
+        heading = _ref2.heading,
+        copy = _ref2.copy,
+        href = _ref2.cta.href;
+    return image && eyebrow && heading && !copy && href;
+  });
+  return _react.default.createElement(_ContentSection.default, {
+    heading: otherProps.heading,
+    autoid: "".concat(stablePrefix, "--card-group-images-group"),
+    customClassName: (0, _classnames.default)("".concat(prefix, "--card-group"), (0, _defineProperty2.default)({}, "".concat(prefix, "--card-group--").concat(theme), theme))
+  }, _react.default.createElement(_CardGroup.CardGroup, {
+    cards: cardsWithImages
+  }));
+};
+
+CardSectionImages.propTypes = {
+  /**
+   * Color theme for pattern. Choose from:
+   *
+   * | Name    | Data Type | Description                  |
+   * | ------- | --------- | ---------------------------- |
+   * | `white` | String    | Carbon White theme           |
+   * | `g10`   | String    | Carbon Gray 10 (g10) theme   |
+   * | `g90`   | String    | Carbon Gray 90 (g90) theme   |
+   * | `g100`  | String    | Carbon Gray 100 (g100) theme |
+   */
+  theme: _propTypes.default.oneOf(['white', 'g10', 'g90', 'g100']),
+
+  /**
+   * Section heading.
+   */
+  heading: _propTypes.default.string.isRequired,
+
+  /**
+   * Cards data. Has the following structure for each items:
+   *
+   * | Name       | Required | Data Type | Description                              |
+   * | ---------- | -------- | --------- | ---------------------------------------- |
+   * | `image`    | YES      | Object    | Contains source and alt text properties. |
+   * | `eyebrow`  | YES      | String    | Eyebrow of the card.                     |
+   * | `heading`  | YES      | String    | Heading of the card.                     |
+   * | `cta.href` | YES      | String    | URI for internal or external resource.   |
+   *
+   * See example
+   * [card data](https://github.com/carbon-design-system/ibm-dotcom-library/blob/master/packages/react/src/components/CardGroup/__stories__/data/cards.json).
+   */
+  cards: _propTypes.default.arrayOf(_propTypes.default.exact({
+    image: _propTypes.default.shape({
+      classname: _propTypes.default.string,
+      sources: _propTypes.default.arrayOf(_propTypes.default.shape({
+        src: _propTypes.default.string,
+        breakpoint: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number])
+      })),
+      defaultSrc: _propTypes.default.string.isRequired,
+      alt: _propTypes.default.string.isRequired,
+      longDescription: _propTypes.default.string
+    }),
+    eyebrow: _propTypes.default.string,
+    heading: _propTypes.default.string,
+    cta: _propTypes.default.shape({
+      href: _propTypes.default.string
+    })
+  })).isRequired
+};
+var _default = CardSectionImages;
+exports.default = _default;

@@ -1,0 +1,15 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "VideoPlayer", {
+  enumerable: true,
+  get: function get() {
+    return _VideoPlayer.default;
+  }
+});
+
+var _VideoPlayer = _interopRequireDefault(require("./VideoPlayer"));
