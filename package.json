@@ -1,6 +1,6 @@
 {
   "name": "dte-shared-private",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "DTE Shared Components Private Repo ",
   "main": "./lib/index.js",
   "scripts": {
