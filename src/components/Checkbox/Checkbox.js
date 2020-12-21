@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Checkbox as CarbonCheckbox } from "carbon-components-react";
-import { HelperText, Tooltip } from ".";
+import { HelperText, Tooltip } from "";
 
 const Checkbox = ({
   id,
@@ -27,7 +27,12 @@ const Checkbox = ({
   };
 
   let label = helperText ? (
-    <Tooltip tooltipText={helperText} markdown={true} direction="top" align="start">
+    <Tooltip
+      tooltipText={helperText}
+      markdown={true}
+      direction="top"
+      align="start"
+    >
       {labelText}
     </Tooltip>
   ) : (
