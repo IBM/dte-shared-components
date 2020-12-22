@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { SkeletonText } from "carbon-components-react";
 
 const Loading = ({
@@ -47,9 +47,9 @@ LoadingCard.defaultProps = {
   message: "Loading...",
 };
 
-// LoadingCard.propTypes = {
-//   className: PropTypes.string,
-//   message: PropTypes.string,
-// };
+LoadingCard.propTypes = {
+  className: PropTypes.string,
+  message: PropTypes.string,
+};
 
 export default LoadingCard;

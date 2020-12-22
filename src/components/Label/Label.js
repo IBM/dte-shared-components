@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { FormLabel, Tooltip } from "carbon-components-react";
 
 const Label = ({ children, className, tooltipText, ...rest }) => {
@@ -19,10 +19,10 @@ Label.defaultProps = {
   tooltipText: "",
 };
 
-// Label.propTypes = {
-//   children: PropTypes.any,
-//   className: PropTypes.string,
-//   tooltipText: PropTypes.string,
-// };
+Label.propTypes = {
+  children: PropTypes.any,
+  className: PropTypes.string,
+  tooltipText: PropTypes.string,
+};
 
 export default Label;

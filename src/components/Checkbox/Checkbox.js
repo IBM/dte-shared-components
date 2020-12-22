@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Checkbox as CarbonCheckbox } from "carbon-components-react";
-import { HelperText, Tooltip } from "";
+import { Tooltip } from "../Tooltip/Tooltip";
 
 const Checkbox = ({
   id,

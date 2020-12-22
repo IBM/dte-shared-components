@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Tooltip } from ".";
+import { Tooltip } from "../Tooltip/Tooltip";
 
 import { isEmpty } from "../lib/utils";
 
-const CalendarEvent = ({ className, event: { description, url, title, ...rest } }) => {
+const CalendarEvent = ({
+  className,
+  event: { description, url, title, ...rest },
+}) => {
   let timeout = null;
   const [tooltip, setTooltip] = useState(false);
 
@@ -34,7 +37,11 @@ const CalendarEvent = ({ className, event: { description, url, title, ...rest } 
   if (url) message = <Link href={url}>{message}</Link>;
 
   return (
-    <div className={className} onMouseOver={_onMouseOver} onMouseOut={_onMouseOut}>
+    <div
+      className={className}
+      onMouseOver={_onMouseOver}
+      onMouseOut={_onMouseOut}
+    >
       {message}
     </div>
   );

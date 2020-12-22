@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Star32, StarFilled32 } from "@carbon/icons-react";
 import ReactRating from "react-rating";
 import styled from "styled-components";
@@ -139,19 +139,19 @@ Rating.defaultProps = {
   onChange: () => {},
 };
 
-// Rating.propTypes = {
-//   buttonSetAlign: PropTypes.string,
-//   buttonSetStyle: PropTypes.string,
-//   dimension: PropTypes.string,
-//   initialRating: PropTypes.string,
-//   labelText: PropTypes.string,
-//   helperText: PropTypes.string,
-//   totalRating: PropTypes.number,
-//   placeholderRating: PropTypes.string,
-//   readonly: PropTypes.bool,
-//   wrap: PropTypes.bool,
-//   namespace: PropTypes.string,
-//   onChange: PropTypes.func,
-// };
+Rating.propTypes = {
+  buttonSetAlign: PropTypes.string,
+  buttonSetStyle: PropTypes.string,
+  dimension: PropTypes.string,
+  initialRating: PropTypes.string,
+  labelText: PropTypes.string,
+  helperText: PropTypes.string,
+  totalRating: PropTypes.number,
+  placeholderRating: PropTypes.string,
+  readonly: PropTypes.bool,
+  wrap: PropTypes.bool,
+  namespace: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
 export default Rating;
