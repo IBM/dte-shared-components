@@ -74,7 +74,6 @@ const Rating = ({
     return (
       <ReactRating initialRating={rating} onClick={handleChange} {...rest} />
     );
-  // let averageRating = (initialRating * totalRating + rating) / (totalRating + 1);
 
   return (
     <span align={buttonSetAlign} style={buttonSetStyle}>
