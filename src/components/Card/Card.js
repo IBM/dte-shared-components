@@ -6,12 +6,17 @@ import styled from "styled-components";
 
 import { ClickableTile, Tile } from "carbon-components-react";
 import { CTA, Image } from "@carbon/ibmdotcom-react";
-import { settings as ddsSettings, markdownToHtml } from "@carbon/ibmdotcom-utilities";
+import {
+  settings as ddsSettings,
+  markdownToHtml,
+} from "@carbon/ibmdotcom-utilities";
 import { settings } from "carbon-components";
 
 import { trackCTA, trackNav, trackJourney } from "../lib/analytics";
 import { isExternalUrl, isHex } from "../lib/utils";
-import { Aux, Ribbon, Flag } from ".";
+
+import { Ribbon } from "../Ribbon/Ribbon";
+import { Flag } from "../Flag/Flag";
 
 const Styled = styled.div`
   & .bx--card__wrapper {
@@ -168,7 +173,8 @@ const Card = ({
         else if (!isExternalUrl(cta.href)) Router.push(cta.href);
         else window.open(cta.href);
       }}
-      {...props}>
+      {...props}
+    >
       <Styled>
         {image && <Image {...image} classname={`${prefix}--card__img`} />}
         <div className={`${prefix}--card__wrapper`}>
@@ -177,7 +183,9 @@ const Card = ({
           {renderActions(actions, type)}
           {eyebrow && <p className={`${prefix}--card__eyebrow`}>{eyebrow}</p>}
           {heading && <h3 className={`${prefix}--card__heading`}>{heading}</h3>}
-          {subheading && <h5 className={`${prefix}--card__subheading`}>{subheading}</h5>}
+          {subheading && (
+            <h5 className={`${prefix}--card__subheading`}>{subheading}</h5>
+          )}
           {optionalContent(copy, raw)}
           {optionalContent(subcopy, raw, "subcopy")}
           {flags ? <Flag {...flags} /> : null}
@@ -215,7 +223,9 @@ const renderFooter = (data, type, wrapped = false) => {
       {type !== "link" ? (
         <CTA style="text" {...cta} customClassName={`${prefix}--card__cta`} />
       ) : (
-        cta.icon.src && <cta.icon.src className={`${prefix}--card__cta`} {...cta.icon} />
+        cta.icon.src && (
+          <cta.icon.src className={`${prefix}--card__cta`} {...cta.icon} />
+        )
       )}
     </div>
   );

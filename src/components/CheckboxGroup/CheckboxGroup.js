@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FormItem, FormLabel, TooltipDefinition } from "carbon-components-react";
+import {
+  FormItem,
+  FormLabel,
+  TooltipDefinition,
+} from "carbon-components-react";
 
-import { Checkbox, HelperText, InvalidText } from ".";
+import { Checkbox } from "../Checkbox/Checkbox";
+import { HelperText } from "../HelperText.js/HelperText";
+import { InvalidText } from "../InvalidText/InvalidText";
 
 let Styled = styled.div`
   & .checkboxgroup__wrapper {
@@ -104,7 +110,9 @@ const CheckboxGroup = ({
   };
 
   const filter = (e) => {
-    let val = ((e && e.target && e.target.value) || "").toString().toLowerCase();
+    let val = ((e && e.target && e.target.value) || "")
+      .toString()
+      .toLowerCase();
     if (!val || val === "") setItems(values);
     let temp =
       (values &&
@@ -121,7 +129,9 @@ const CheckboxGroup = ({
     return (
       <FormItem {...rest}>
         {labelText ? (
-          <FormLabel className="bx--label bx--label--disabled">{labelText}</FormLabel>
+          <FormLabel className="bx--label bx--label--disabled">
+            {labelText}
+          </FormLabel>
         ) : null}
         {items.sort(sortBy).map((v, i) => {
           let u = `${namespace}${name}-${i}`;
@@ -131,7 +141,10 @@ const CheckboxGroup = ({
           return <Checkbox id={u} name={name} value={l} key={u} {...v} />;
         })}
         {helperText ? (
-          <HelperText className="bx--label bx--label-disabled" source={helperText} />
+          <HelperText
+            className="bx--label bx--label-disabled"
+            source={helperText}
+          />
         ) : null}
       </FormItem>
     );
@@ -139,11 +152,17 @@ const CheckboxGroup = ({
   // if (values && values.length > 0) {
   return values && values.length > 0 ? (
     <FormItem {...rest}>
-      {labelText ? <FormLabel>{tooltipMessage ? (
-        <TooltipDefinition tooltipText={tooltipMessage}>
-          {labelText}
-        </TooltipDefinition>
-      ) : labelText}</FormLabel> : null}
+      {labelText ? (
+        <FormLabel>
+          {tooltipMessage ? (
+            <TooltipDefinition tooltipText={tooltipMessage}>
+              {labelText}
+            </TooltipDefinition>
+          ) : (
+            labelText
+          )}
+        </FormLabel>
+      ) : null}
       <Styled>
         {filterable ? (
           <input
@@ -154,19 +173,31 @@ const CheckboxGroup = ({
           />
         ) : null}
         <div
-          className={`checkboxgroup__wrapper ${scrollable ? "scrollable" : ""} ${layout}${
-            invalid ? " invalid" : ""
-          }`}>
+          className={`checkboxgroup__wrapper ${
+            scrollable ? "scrollable" : ""
+          } ${layout}${invalid ? " invalid" : ""}`}
+        >
           {items.sort(sortBy).map((v, i) => {
             let u = `${namespace}${name}-${i}`;
             let l = v.value || v.labelText || v;
             v.checked = isChecked(l);
             // return <Checkbox id={u} name={name} value={l} key={u} {...v} />;
-            return <Checkbox id={u} name={name} value={l} key={u} onChange={handleCheck} {...v} />;
+            return (
+              <Checkbox
+                id={u}
+                name={name}
+                value={l}
+                key={u}
+                onChange={handleCheck}
+                {...v}
+              />
+            );
           })}
         </div>
       </Styled>
-      {helperText ? <HelperText className="bx--label" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--label" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

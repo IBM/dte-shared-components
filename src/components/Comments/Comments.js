@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import {
-  Button,
-  Column,
-  Grid,
-  Row,
-  StructuredListWrapper,
-  StructuredListHead,
-  StructuredListBody,
-  StructuredListRow,
-  StructuredListCell,
-} from "carbon-components-react";
+import { Column, Grid, Row } from "carbon-components-react";
 import { AddComment32, UserAvatar32, TrashCan20 } from "@carbon/icons-react";
 
-import { ButtonSet, Form, IconButton, EmailList, Readmore, Wysiwyg } from ".";
-import { toLocaleDateString } from "../lib/utils";
+import { Button } from "../Button/Button";
+import { ButtonSet } from "../ButtonSet/ButtonSet";
+import { Form } from "../Form/Form";
+import { IconButton } from "../IconButton/IconButton";
+import { EmailList } from "../EmailList/EmailList";
+import { Readmore } from "../Readmore/Readmore";
+import { Wysiwyg } from "../Wysiwyg/Wysiwyg";
+
+import { toLocaleDateString, toBoolean } from "lib/utils";
+
+const PUBLIC = toBoolean(process.env.PUBLIC || false);
 
 const Styled = styled.div`
   & .bx--grid {
@@ -96,6 +96,8 @@ const CommentDate = styled.div`
   color: rgba(22, 22, 22, 0.5);
 `;
 
+// this file fails eslint for some reasons with garable about  react/no-unescaped-entities
+/* eslint-disable */
 const Comments = ({
   namespace,
   moderator,
@@ -110,9 +112,7 @@ const Comments = ({
   const [comments, setComments] = useState(rest.comments || []);
   const [commented, setCommented] = useState(false);
 
-  const handleChange = (name, value) => {
-    setComment(value);
-  };
+  const handleChange = (name, value) => setComment(value);
 
   const handleSubmit = async () => {
     if (onSubmit) {
@@ -159,7 +159,8 @@ const Comments = ({
                     type="button"
                     kind="primary"
                     renderIcon={AddComment32}
-                    onClick={handleSubmit}>
+                    onClick={handleSubmit}
+                  >
                     Add comment
                   </Button>
                 </ButtonSet>
@@ -174,7 +175,12 @@ const Comments = ({
               .map((c, i) => {
                 return (
                   <Row key={`${namespace}-list-${i}`} condensed>
-                    <Comment lg={10} md={8} sm={4} className={`${namespace}-comment`}>
+                    <Comment
+                      lg={10}
+                      md={8}
+                      sm={4}
+                      className={`${namespace}-comment`}
+                    >
                       {moderator ? (
                         <CommentAction>
                           <ButtonSet>
@@ -182,7 +188,7 @@ const Comments = ({
                               kind="ghost"
                               renderIcon={TrashCan20}
                               iconDescription="Delete"
-                              onClick={(e) => {
+                              onClick={() => {
                                 handleDelete(c.id);
                               }}
                             />
@@ -204,12 +210,18 @@ const Comments = ({
                         </CommentIcon>
                         <CommentUser>
                           {!masked ? (
-                            <EmailList list={[c.user]} format="short" hydrate={true} />
+                            <EmailList
+                              list={[c.user]}
+                              format="short"
+                              hydrate={!PUBLIC}
+                            />
                           ) : (
                             "*****"
                           )}
                         </CommentUser>
-                        <CommentDate>{toLocaleDateString(c.createdAt, "lll")}</CommentDate>
+                        <CommentDate>
+                          {toLocaleDateString(c.createdAt, "lll")}
+                        </CommentDate>
                       </CommentFooter>
                     </Comment>
                   </Row>
@@ -235,6 +247,16 @@ Comments.defaultProps = {
     },
   },
   onChange: () => {},
+};
+
+Comments.propTypes = {
+  namespace: PropTypes.string,
+  moderator: PropTypes.bool,
+  readonly: PropTypes.bool,
+  masked: PropTypes.bool,
+  onDelete: PropTypes.func,
+  onSubmit: PropTypes.func,
+  toolbar: PropTypes.any,
 };
 
 export default Comments;

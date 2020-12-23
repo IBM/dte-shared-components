@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+import { shuffle } from "lodash";
 
-import { ConfirmModal, Loading } from ".";
+import { ConfirmModal } from "../ConfirmModal/ConfirmModal";
+import { Loading } from "../Loading/Loading";
 
 const LOADING_TIMEOUT = 750;
 const ALERT_TIMEOUT = 90000;
 const MESSAGES_TIMEOUT = 1500;
-const MESSAGES = [
+
+const MESSAGES_CORE = [
   "Loading...",
   "Loading...",
   "Getting data...",
@@ -14,6 +17,8 @@ const MESSAGES = [
   "Caching results...",
   "Please standby...",
   "Please standby...",
+];
+const MESSAGES_FUNNY = [
   "Adjusting flux capacitor...",
   "Dividing by zero...",
   "Ordering 1s and 0s...",
@@ -41,9 +46,12 @@ const MESSAGES = [
   "Just count to 10...",
   "Convincing AI not to turn evil...",
   "Should have used a compiled language...",
+];
+const MESSAGES_LAST = [
   "I swear it's almost done...",
   "Maybe you should reload the page...",
 ];
+const MESSAGES = MESSAGES_CORE.concat(shuffle(MESSAGES_FUNNY), MESSAGES_LAST);
 
 const Loader = ({
   children,
@@ -203,14 +211,14 @@ Loader.defaultProps = {
   style: { margin: "25vh auto 0" },
 };
 
-// Loader.propTypes = {
-//   initial: PropTypes.bool,
-//   children: PropTypes.any,
-//   router: PropTypes.any,
-//   history: PropTypes.any,
-//   messages: PropTypes.string,
-//   description: PropTypes.string,
-//   style: PropTypes.object,
-// };
+Loader.propTypes = {
+  initial: PropTypes.bool,
+  children: PropTypes.any,
+  router: PropTypes.any,
+  history: PropTypes.any,
+  messages: PropTypes.string,
+  description: PropTypes.string,
+  style: PropTypes.object,
+};
 
 export default Loader;
