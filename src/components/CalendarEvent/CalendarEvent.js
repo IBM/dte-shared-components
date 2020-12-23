@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Tooltip } from "../Tooltip/Tooltip";
 
-import { isEmpty } from "../lib/utils";
+// import { isEmpty } from "../lib/utils";
 
 const CalendarEvent = ({
   className,
   event: { description, url, title, ...rest },
+  isEmpty
 }) => {
   let timeout = null;
   const [tooltip, setTooltip] = useState(false);

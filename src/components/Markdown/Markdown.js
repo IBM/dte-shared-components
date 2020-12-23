@@ -78,7 +78,7 @@ let Styled = styled.span`
   }
 `;
 
-const inlineCode = ({ value }) => (
+const inlineCode = ({ value, copyToClipboard }) => (
   <CodeSnippet
     type="inline"
     feedback="Copied to clipboard"
@@ -90,7 +90,7 @@ const inlineCode = ({ value }) => (
   </CodeSnippet>
 );
 
-const code = ({ value }) => (
+const code = ({ value, copyToClipboard }) => (
   <CodeSnippet
     type="multi"
     feedback="Copied to clipboard"

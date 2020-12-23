@@ -18,7 +18,7 @@ import { getAuthorization, getEmail } from "../lib/auth";
 import { send } from "../lib/message";
 import { initial } from "lodash";
 import { isBasic } from "../lib/collection";
-import { isEmail, isEmpty, markdownToHtml } from "../lib/utils";
+// import { isEmail, isEmpty, markdownToHtml } from "../lib/utils";
 
 const VALIDATION_SCHEMA = Yup.object().shape({
   to: Yup.string().required().max(2048),
@@ -61,6 +61,9 @@ const Share = ({
   collection,
   onEmail,
   onClose,
+  isEmail,
+  isEmpty,
+  markdownToHtml,
   user = {},
 }) => {
   const [formIsValid, setFormIsValid] = useState(false);

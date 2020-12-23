@@ -19,7 +19,7 @@ import {
 import { send } from "../lib/message";
 import { getEmail, getAuthorization } from "../lib/auth";
 import { searchByEmail } from "../lib/bluepages";
-import { isEmail, isEmpty, toLocaleDateString } from "../lib/utils";
+// import { isEmail, isEmpty, toLocaleDateString } from "../lib/utils";
 
 const VALIDATION_SCHEMA = Yup.object().shape({
   to: Yup.string().email("Invalid email").required().max(2048),
@@ -34,7 +34,7 @@ const TOOLBAR = {
   },
 };
 
-const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit }) => {
+const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, isEmail, isEmpty, toLocaleDateString }) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [initialValues, setInitialValues] = useState({

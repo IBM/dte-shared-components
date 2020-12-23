@@ -12,8 +12,8 @@ import {
 } from "@carbon/ibmdotcom-utilities";
 import { settings } from "carbon-components";
 
-import { trackCTA, trackNav, trackJourney } from "../lib/analytics";
-import { isExternalUrl, isHex } from "../lib/utils";
+// import { trackCTA, trackNav, trackJourney } from "../lib/analytics";
+// import { isExternalUrl, isHex } from "../lib/utils";
 
 import { Ribbon } from "../Ribbon/Ribbon";
 import { Flag } from "../Flag/Flag";
@@ -99,6 +99,11 @@ const Card = ({
   menu,
   wrapped,
   onClick,
+  trackCTA,
+  trackNav, 
+  trackJourney,
+  isExternalUrl, 
+  isHex,
   ...props
 }) => {
   const CardTile = Tile; //type === "link" ? ClickableTile : Tile;

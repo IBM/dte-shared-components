@@ -13,8 +13,8 @@ import { Email20, LogoSlack20 } from "@carbon/icons-react";
 
 import { Mailto } from "../Mailto/Mailto";
 
-import { fetcher } from "lib/crud";
-import { isEmail } from "lib/utils";
+// import { fetcher } from "lib/crud";
+// import { isEmail } from "lib/utils";
 
 const intersperse = (arr, sep = ", ") => {
   if (arr.length === 0) return [];
@@ -107,7 +107,7 @@ const TooltipUser = ({ data, children, key, ...rest }) => {
   );
 };
 
-const HydrateUser = ({ email, key, ...rest }) => {
+const HydrateUser = ({ email, key, ...rest, fetcher }) => {
   const { data, error, isValidating } = useSWR(
     `/api/lookup?email=${email}`,
     fetcher
@@ -142,6 +142,7 @@ const EmailList = ({
   obfuscate,
   format,
   hydrate,
+  isEmail,
   ...rest
 }) => {
   if (!list || isEmpty(list)) return null;
