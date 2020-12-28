@@ -9,15 +9,15 @@ import {
   ToastNotification,
 } from "carbon-components-react";
 import { Formik } from "formik";
-import { Wysiwyg, TagInput, TagInputTypeahead, InvalidText, Loading } from ".";
+import { Wysiwyg, TagInput, TagInputTypeahead, InvalidText, Loading } from "../../index";
 import * as Yup from "yup";
 
 import { templateBody, templateSubject } from "../data/emailTemplate";
 import { truncate } from "lodash";
-import { getAuthorization, getEmail } from "../lib/auth";
-import { send } from "../lib/message";
+// import { getAuthorization, getEmail } from "../lib/auth";
+// import { send } from "../lib/message";
 import { initial } from "lodash";
-import { isBasic } from "../lib/collection";
+// import { isBasic } from "../../methods";
 // import { isEmail, isEmpty, markdownToHtml } from "../lib/utils";
 
 const VALIDATION_SCHEMA = Yup.object().shape({
@@ -64,6 +64,9 @@ const Share = ({
   isEmail,
   isEmpty,
   markdownToHtml,
+  getAuthorization,
+  getEmail,
+  send,
   user = {},
 }) => {
   const [formIsValid, setFormIsValid] = useState(false);

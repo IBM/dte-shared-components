@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   FormItem,
@@ -7,7 +7,7 @@ import {
 } from "carbon-components-react";
 
 import { Checkbox } from "../Checkbox/Checkbox";
-import { HelperText } from "../HelperText.js/HelperText";
+import { HelperText } from "../HelperText/HelperText";
 import { InvalidText } from "../InvalidText/InvalidText";
 
 let Styled = styled.div`

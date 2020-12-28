@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styled from "styled-components";
-import { Markdown } from "";
+import { Markdown } from "../../index";
 
 const prefix = "bx";
 

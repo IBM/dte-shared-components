@@ -9,8 +9,8 @@ import styled from "styled-components";
 
 import { CodeSnippet } from "carbon-components-react";
 
-import { trackCTA } from "lib/analytics";
-import { copyToClipboard } from "lib/utils";
+// import { trackCTA } from "lib/analytics";
+// import { copyToClipboard } from "lib/utils";
 
 let Styled = styled.span`
   & ol,
@@ -106,7 +106,7 @@ const underline = ({ children }) => {
   return <u>{children[0]?.props?.value}</u>;
 };
 
-const link = ({ href, children, ...rest }) => {
+const link = ({ href, children, ...rest, trackCTA }) => {
   return (
     <a
       onClick={(e) => {

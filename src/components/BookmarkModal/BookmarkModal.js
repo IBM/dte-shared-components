@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Modal, Grid, Row, Column } from "carbon-components-react";
 
 import { TextInput } from ".";
-import { getAuthorization, getEmail } from "../lib/auth";
-import { createOrUpdate } from "../lib/bookmark";
+// import { getAuthorization, getEmail } from "../lib/auth";
+// import { createOrUpdate } from "../lib/bookmark";
 
 const BookmarkModal = ({
   values = {},
@@ -16,6 +16,9 @@ const BookmarkModal = ({
   primaryButtonText,
   secondaryButtonText,
   onClose,
+  getAuthorization,
+  getEmail,
+  createOrUpdate,
   ...props
 }) => {
   const [email, setEmail] = useState(values);

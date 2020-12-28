@@ -14,7 +14,8 @@ import { Readmore } from "../Readmore/Readmore";
 import { Wysiwyg } from "../Wysiwyg/Wysiwyg";
 
 
-import { toLocaleDateString, toBoolean } from "lib/utils";
+// import { toLocaleDateString, toBoolean } from "lib/utils";
+import { toBoolean } from '../../methods';
 // Since it is outside, we need to move that specific library
 const PUBLIC = toBoolean(process.env.PUBLIC || false);
 
