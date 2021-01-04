@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 import styled from "styled-components";
 import { Markdown } from "../../index";
+import Aux from "../Aux/Aux";
 
 const prefix = "bx";
 
@@ -82,7 +83,7 @@ const Tooltip = ({
   // }
   if (markdown) {
     return (
-      <>
+      <Aux>
         <StyledLink
           className={`${tooltipClassName}`}
           onFocus={() => setShow(true)}
@@ -107,7 +108,7 @@ const Tooltip = ({
             </div>
           </StyledToolTipContent>
         ) : null}
-      </>
+      <Aux/>
     );
   }
 

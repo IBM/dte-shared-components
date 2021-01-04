@@ -1,0 +1,59 @@
+{
+  "name": "babel-upgrade",
+  "version": "1.0.1",
+  "description": "Upgrade tool for Babel",
+  "bin": "./bin/babel-upgrade",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "start": "npm run build -- -w",
+    "test": "jest",
+    "prepublish": "npm test  &&  npm run build"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "lib",
+    "src",
+    "bin",
+    "readme.md"
+  ],
+  "keywords": [
+    "babel",
+    "babel 7",
+    "babel-upgrade",
+    "codemod"
+  ],
+  "author": "Henry Zhu <hi@henryzoo.com>",
+  "repository": "babel/babel-upgrade",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "commander": "^2.18.0",
+    "cross-spawn": "^6.0.4",
+    "diff": "^4.0.1",
+    "globby": "^9.1.0",
+    "has-yarn": "^2.0.0",
+    "json5": "^2.1.0",
+    "pify": "^4.0.1",
+    "read-pkg-up": "^5.0.0",
+    "semver": "^5.5.0",
+    "sort-keys": "^2.0.0",
+    "write": "^1.0.3",
+    "write-json-file": "^3.1.0",
+    "write-pkg": "^3.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "jest": "^24.5.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "<rootDir>/node_modules/@babel/polyfill/dist/polyfill.js"
+    ]
+  }
+}
