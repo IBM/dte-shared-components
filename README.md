@@ -1,6 +1,4 @@
 # dte-shared-private
-# dte-shared-private
-
 <!-- # shahbaz_react-components -->
 
 <!-- This is npm registry, upon any changes required steps:
