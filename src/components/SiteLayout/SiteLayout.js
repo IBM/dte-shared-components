@@ -30,7 +30,12 @@ import {
   Row,
   Column,
 } from "carbon-components-react";
-import { Login20, Notification20, UserAvatar20, Search20 } from "@carbon/icons-react";
+import {
+  Login20,
+  Notification20,
+  UserAvatar20,
+  Search20,
+} from "@carbon/icons-react";
 
 import { ContentModal, Markdown, ScrollToTopButton } from "components";
 import { useLocalStorage } from "lib/state";
@@ -137,8 +142,10 @@ const Styled = styled.span`
 const SiteHeader = ({ prefix, router, user = {} }) => {
   // const { asPath = "/" } = router;
   const { roles = [] } = user;
-  const title = packageJson.title || "";
-  const menu = <SiteNavigation links={navigation.links} router={router} roles={roles} />;
+  const title = packageJson.title || ""; //
+  const menu = (
+    <SiteNavigation links={navigation.links} router={router} roles={roles} />
+  );
   return (
     <HeaderContainer
       render={({ isSideNavExpanded, onClickSideNavExpand }) => (
@@ -152,9 +159,13 @@ const SiteHeader = ({ prefix, router, user = {} }) => {
           <Link href="/" passHref={true}>
             <HeaderName prefix={prefix || "IBM"}>{title}</HeaderName>
           </Link>
-          <HeaderNavigation aria-label={`${prefix || "IBM"} ${title}`}>{menu}</HeaderNavigation>
+          <HeaderNavigation aria-label={`${prefix || "IBM"} ${title}`}>
+            {menu}
+          </HeaderNavigation>
           <SiteActionBar router={router} user={user} />
-          <SiteSideNavigation isSideNavExpanded={isSideNavExpanded}>{menu}</SiteSideNavigation>
+          <SiteSideNavigation isSideNavExpanded={isSideNavExpanded}>
+            {menu}
+          </SiteSideNavigation>
         </Header>
       )}
     />
@@ -170,8 +181,11 @@ const SiteNavigation = ({ links = [], router, roles = [] }) => {
         <HeaderMenu
           aria-label={n.label}
           menuLinkName={n.label}
-          isCurrentPage={!n.nomatch && router.pathname === n.href ? true : false}
-          key={`headermenu-${i}`}>
+          isCurrentPage={
+            !n.nomatch && router.pathname === n.href ? true : false
+          }
+          key={`headermenu-${i}`}
+        >
           <SiteNavigation links={n.links} router={router} roles={roles} />
         </HeaderMenu>
       );
@@ -180,7 +194,10 @@ const SiteNavigation = ({ links = [], router, roles = [] }) => {
       <Link href={n.href} key={`menu-${i}`}>
         <HeaderMenuItem
           href={n.href}
-          isCurrentPage={!n.nomatch && router.pathname === n.href ? true : false}>
+          isCurrentPage={
+            !n.nomatch && router.pathname === n.href ? true : false
+          }
+        >
           <Markdown source={n.label} disallowedTypes={["paragraph"]} />
         </HeaderMenuItem>
       </Link>
@@ -204,16 +221,21 @@ const PageNavigation = ({ links = [], path, roles = [] }) => {
             );
           return null;
         });
-      else if (n && n.links) return <PageNavigation links={n.links} path={path} roles={roles} />;
+      else if (n && n.links)
+        return <PageNavigation links={n.links} path={path} roles={roles} />;
       else return null;
     })
     .filter((o) => o !== null);
 };
 
 // small badge component for highlighting the number of alerts
+///bring in seprate comp.
 const Badge = ({ number, label = "notification", plural = "s" }) => {
   return number === 0 ? null : (
-    <div className="decorator" title={`${number} ${label}${number === 1 ? "" : plural}`}>
+    <div
+      className="decorator"
+      title={`${number} ${label}${number === 1 ? "" : plural}`}
+    >
       {number}
     </div>
   );
@@ -229,7 +251,9 @@ const HeaderGlobalActionNotification = ({ router }) => {
     if (!data || data.error) return; // no data or error ... just exit for now
     // filter the list to determine the difference
     const result =
-      data && data.length > 0 ? data.filter((d) => d && !acknowledged.includes(d)) : [];
+      data && data.length > 0
+        ? data.filter((d) => d && !acknowledged.includes(d))
+        : [];
     setNotifications(result); // set the notifications
   }, [data]); // when data changes ...
   return (
@@ -238,8 +262,13 @@ const HeaderGlobalActionNotification = ({ router }) => {
       isActive={asPath && asPath === "/notifications" ? true : false}
       onClick={() => {
         router.push("/notifications");
-        trackNav({ name: "Notifications", type: "Button", milestone: "Notifications" });
-      }}>
+        trackNav({
+          name: "Notifications",
+          type: "Button",
+          milestone: "Notifications",
+        });
+      }}
+    >
       <Notification20 />
       {!isValidating && notifications && notifications.length > 0 ? (
         <Badge number={notifications.length} />
@@ -260,7 +289,9 @@ const SiteActionBar = ({ user = {}, router }) => {
             router.push("/search");
             setTimeout(() => {
               // complete hack ... switch to ref later or some other hook
-              let elem = document && document.getElementById("searchbox-downshift-input");
+              let elem =
+                document &&
+                document.getElementById("searchbox-downshift-input");
               if (elem) {
                 elem.focus();
                 let rect = elem.getBoundingClientRect();
@@ -268,7 +299,8 @@ const SiteActionBar = ({ user = {}, router }) => {
               }
             }, 500);
             trackNav({ name: "Search", type: "Button", milestone: "Search" });
-          }}>
+          }}
+        >
           <Search20 />
         </HeaderGlobalAction>
         <HeaderGlobalActionNotification user={user} router={router} />
@@ -283,7 +315,8 @@ const SiteActionBar = ({ user = {}, router }) => {
                 type: "Button",
                 milestone: `Header panel ${showHeaderPanel ? "show" : "hide"}`,
               });
-            }}>
+            }}
+          >
             <UserAvatar20 />
           </HeaderGlobalAction>
         ) : (
@@ -296,7 +329,8 @@ const SiteActionBar = ({ user = {}, router }) => {
                 name: "Login",
               });
               router.push(`/login?originalUrl=${asPath}`);
-            }}>
+            }}
+          >
             <Login20 title="Login" />
           </HeaderGlobalAction>
         )}
@@ -364,13 +398,16 @@ const SiteSideNavigation = ({ isSideNavExpanded, children, ...rest }) => {
 };
 
 const SiteNotification = () => {
-  const [acknowledged, setAcknowledged] = useLocalStorage("site-notification", 0);
+  const [acknowledged, setAcknowledged] = useLocalStorage(
+    "site-notification",
+    0
+  );
   const [moreInfo, setMoreInfo] = useState(false);
   // get some official verbage for this
   const message = (
     <p>
-      <strong>IMPORTANT NOTICE</strong>: All content shared in this application will be accessible
-      by all IBMers.
+      <strong>IMPORTANT NOTICE</strong>: All content shared in this application
+      will be accessible by all IBMers.
     </p>
   );
   if (acknowledged) return null;
@@ -396,7 +433,8 @@ const SiteNotification = () => {
             <NotificationActionButton
               onClick={() => {
                 setMoreInfo(1);
-              }}>
+              }}
+            >
               More info
             </NotificationActionButton>
           }
@@ -442,7 +480,7 @@ const SiteLayout = ({ children, user = {}, ...rest }) => {
 
 SiteSideNavigation.defaultProps = {
   "aria-label": "Side navigation",
-  "isPersistent": false,
+  isPersistent: false,
 };
 
 SiteLayout.defaultProps = {

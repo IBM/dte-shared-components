@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { isEmpty } from "lodash";
-import useSWR from "swr";
 import styled from "styled-components";
 
 import { Button } from "../Button/Button";
@@ -12,9 +11,6 @@ import {
 import { Email20, LogoSlack20 } from "@carbon/icons-react";
 
 import { Mailto } from "../Mailto/Mailto";
-
-// import { fetcher } from "lib/crud";
-// import { isEmail } from "lib/utils";
 
 const intersperse = (arr, sep = ", ") => {
   if (arr.length === 0) return [];
@@ -107,41 +103,12 @@ const TooltipUser = ({ data, children, key, ...rest }) => {
   );
 };
 
-const HydrateUser = ({ email, key, ...rest, fetcher }) => {
-  const { data, error, isValidating } = useSWR(
-    `/api/lookup?email=${email}`,
-    fetcher
-  );
-  // if an error occurs then default to simple user mailto
-  if (error)
-    return (
-      <Mailto key={key} email={email} {...rest}>
-        {(data && data.preferredIdentity) || email}
-      </Mailto>
-    );
-  if (data && (data.nameFull || data.nameDisplay))
-    return (
-      <TooltipUser key={key} data={data} {...rest}>
-        {data.nameFull || data.nameDisplay} ({data.preferredIdentity || email})
-      </TooltipUser>
-    );
-  return (
-    <Mailto key={key} email={email} {...rest}>
-      {(data && data.preferredIdentity) || email}
-      {isValidating ? (
-        <SkeletonText lineCount={1} width="8rem" key={key} />
-      ) : null}
-    </Mailto>
-  );
-};
-
 const EmailList = ({
   delimiter,
   list,
   unique,
   obfuscate,
   format,
-  hydrate,
   isEmail,
   ...rest
 }) => {
@@ -164,14 +131,7 @@ const EmailList = ({
     return intersperse(
       emails.map((e, i) => {
         if (!isEmail((e && e.email) || e)) return (e && e.name) || e;
-        return hydrate ? (
-          <HydrateUser
-            email={(e && e.email) || e}
-            key={`email-${i}`}
-            obfuscate={obfuscate}
-            {...rest}
-          />
-        ) : (
+        return (
           <Mailto
             key={`email-${i}`}
             email={(e && e.name) || e}
@@ -206,17 +166,11 @@ EmailList.defaultProps = {
   obfuscate: true,
   format: "list", // list, short, markdown, text
   delimiter: ", ",
-  hydrate: false,
 };
 
 TooltipUser.propTypes = {
   data: PropTypes.any,
   children: PropTypes.any,
-  key: PropTypes.string,
-};
-
-HydrateUser.propTypes = {
-  email: PropTypes.string,
   key: PropTypes.string,
 };
 
@@ -226,7 +180,6 @@ EmailList.propTypes = {
   unique: PropTypes.bool,
   obfuscate: PropTypes.bool,
   format: PropTypes.string,
-  hydrate: PropTypes.bool,
 };
 
 export default EmailList;

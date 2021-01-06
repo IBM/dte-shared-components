@@ -279,7 +279,7 @@ const Contact = ({
           </Form>
         )}
       </Formik>
-    <Aux/>
+    </Aux>
   );
 };
 

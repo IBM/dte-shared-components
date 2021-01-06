@@ -13,14 +13,10 @@
   "author": "IBM DTE2.0",
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
-    "@babel/preset-env": "^7.12.11",
     "@carbon/ibmdotcom-react": "1.10.1",
     "@carbon/ibmdotcom-styles": "1.10.1",
     "@carbon/icons-react": "^10.3.0",
     "@carbon/type": "^10.18.0",
-    "babel-upgrade": "^1.0.1",
     "carbon-components": "10.3.0",
     "carbon-components-react": "7.3.0",
     "carbon-icons": "^7.0.7",
@@ -36,13 +32,17 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^7.1.4",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-next": "^1.4.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.24.1",
     "path": "^0.12.7",
-    "webpack": "^4.5.0",
+    "webpack": "^5.11.1",
     "webpack-cli": "^3.2.1"
   }
 }
