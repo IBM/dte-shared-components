@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Aux from "../Aux/Aux";
 
-import { Button, Row, Column, ToastNotification } from "carbon-components-react";
-import { Form, TextInput } from ".";
+import {
+  Button,
+  Row,
+  Column,
+  ToastNotification,
+} from "carbon-components-react";
+
+import { TextInput } from "../TextInput/TextInput";
+import { Form } from "../Form/Form";
 import { SendAlt32 } from "@carbon/icons-react";
 
 import {
@@ -33,7 +41,21 @@ const TOOLBAR = {
   },
 };
 
-const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, isEmail, isEmpty, toLocaleDateString, getEmail, getAuthorization, send }) => {
+const Contact = ({
+  to,
+  subject,
+  html,
+  buttons,
+  additional,
+  user = {},
+  onSubmit,
+  isEmail,
+  isEmpty,
+  toLocaleDateString,
+  getEmail,
+  getAuthorization,
+  send,
+}) => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [initialValues, setInitialValues] = useState({
@@ -90,7 +112,11 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
   const submitHandler = (values, { setSubmitting }) => {
     try {
       send(values, getAuthorization(user));
-      addNotification("Message sent", "Thank you for reaching out to us.", "info");
+      addNotification(
+        "Message sent",
+        "Thank you for reaching out to us.",
+        "info"
+      );
       if (onSubmit && typeof onSubmit === "function") onSubmit(values);
     } catch (err) {
       addNotification("Message error", err.message || err, "error");
@@ -105,7 +131,7 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
   };
 
   return (
-    <>
+    <Aux>
       <Notifications notifications={notifications} />
       <Formik
         initialValues={initialValues}
@@ -113,7 +139,8 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
         validateOnBlur={true}
         validateOnChange={false}
         validationSchema={VALIDATION_SCHEMA}
-        onSubmit={submitHandler}>
+        onSubmit={submitHandler}
+      >
         {({
           values,
           dirty,
@@ -136,7 +163,9 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
                 if (!isValid) {
                   addNotification(
                     "Error",
-                    `Please address the following errors: ${Object.values(errors).join(", ")}`,
+                    `Please address the following errors: ${Object.values(
+                      errors
+                    ).join(", ")}`,
                     "error"
                   );
                 }
@@ -145,7 +174,8 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
             onChange={handleChange}
             onReset={handleReset}
             onBlur={handleBlur}
-            className="form">
+            className="form"
+          >
             {isEmpty(initialValues.to) ? (
               <Row>
                 <Column lg={16} md={8} sm={4}>
@@ -225,7 +255,8 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
                     type="submit"
                     kind="primary"
                     disabled={isSubmitting}
-                    renderIcon={SendAlt32}>
+                    renderIcon={SendAlt32}
+                  >
                     Send
                   </Button>
                   {additional}
@@ -235,7 +266,11 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
                     <InlineLoading
                       success={hasSubmitted}
                       icondescription="Active loading indicator"
-                      description={hasSubmitted ? "Submission successful" : "Submitting ..."}
+                      description={
+                        hasSubmitted
+                          ? "Submission successful"
+                          : "Submitting ..."
+                      }
                     />
                   </Column>
                 ) : null}
@@ -244,7 +279,7 @@ const Contact = ({ to, subject, html, buttons, additional, user = {}, onSubmit, 
           </Form>
         )}
       </Formik>
-    </>
+    </Aux>
   );
 };
 

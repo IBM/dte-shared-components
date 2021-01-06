@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Modal, Grid, Row, Column } from "carbon-components-react";
 
-import { TextInput } from ".";
-// import { getAuthorization, getEmail } from "../lib/auth";
-// import { createOrUpdate } from "../lib/bookmark";
+import { TextInput } from "components";
+import { getAuthorization, getEmail } from "lib/auth";
+import { createOrUpdate } from "lib/bookmark";
+import Aux from "../Aux/Aux";
 
 const BookmarkModal = ({
   values = {},
@@ -16,9 +18,6 @@ const BookmarkModal = ({
   primaryButtonText,
   secondaryButtonText,
   onClose,
-  getAuthorization,
-  getEmail,
-  createOrUpdate,
   ...props
 }) => {
   const [email, setEmail] = useState(values);
@@ -37,13 +36,6 @@ const BookmarkModal = ({
       setFormValues(v);
     }
   }, []);
-
-  const setFieldValue = (name, e) => {
-    let v = { ...formValues };
-    v[name] = e.target.value;
-    setFormValues(v);
-    // if (props.onChange) props.onChange(formValues);
-  };
 
   const onSubmit = () => {
     // console.log('formValues',formValues)
@@ -129,7 +121,7 @@ const BookmarkModal = ({
 BookmarkModal.defaultProps = {
   namespace: "modal",
   message: (
-    <>
+    <Aux>
       <p>
         Would you like to save your search as a bookmark? Fill in a name and click{" "}
         <strong>Save</strong>.
@@ -138,7 +130,7 @@ BookmarkModal.defaultProps = {
       <p>
         Your bookmarks will be available on the bookmarks page and the homepage for quick access.
       </p>
-    </>
+    <Aux/>
   ),
   modalLabel: "Bookmark",
   modalAriaLabel: "Bookmark",
@@ -147,6 +139,20 @@ BookmarkModal.defaultProps = {
   secondaryButtonText: "Cancel",
   onSubmit: () => {},
   onClose: () => {},
+};
+
+BookmarkModal.propTypes = {
+  namespace: PropTypes.string,
+  values: PropTypes.any,
+  user: PropTypes.any,
+  message: PropTypes.any,
+  modalLabel: PropTypes.string,
+  modalAriaLabel: PropTypes.string,
+  modalHeading: PropTypes.string,
+  primaryButtonText: PropTypes.string,
+  secondaryButtonText: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 export default BookmarkModal;

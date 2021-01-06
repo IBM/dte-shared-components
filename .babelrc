@@ -1,7 +1,13 @@
 {
-	"presets": [
-			"react",
-			"env",
-			"stage-0"
-	]
+  "presets": [
+    "next",
+    "react",
+    {
+      "styled-components": {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
+    }
+  ]
 }

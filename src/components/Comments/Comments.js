@@ -13,9 +13,8 @@ import { EmailList } from "../EmailList/EmailList";
 import { Readmore } from "../Readmore/Readmore";
 import { Wysiwyg } from "../Wysiwyg/Wysiwyg";
 
-
 // import { toLocaleDateString, toBoolean } from "lib/utils";
-import { toBoolean } from '../../methods';
+import { toBoolean } from "../../methods";
 // Since it is outside, we need to move that specific library
 const PUBLIC = toBoolean(process.env.PUBLIC || false);
 
@@ -44,7 +43,7 @@ const CommentAction = styled.div`
 
 const CommentQuotation = styled.div`
   font-size: 1rem;
-  quotes: "\201C""\201D""\2018""\2019";
+  quotes: "\201C""\201D""\2018""\\2019";
   line-height: 1.5;
   min-height: 3rem;
   padding: 0 5rem 1rem 0;

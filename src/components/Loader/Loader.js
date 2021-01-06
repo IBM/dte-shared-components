@@ -4,6 +4,7 @@ import { shuffle } from "lodash";
 
 import { ConfirmModal } from "../ConfirmModal/ConfirmModal";
 import { Loading } from "../Loading/Loading";
+import Aux from "../Aux/Aux";
 
 const LOADING_TIMEOUT = 750;
 const ALERT_TIMEOUT = 90000;
@@ -180,7 +181,7 @@ const Loader = ({
 
   // uh oh ... alert?
   return (
-    <>
+    <Aux>
       {alert ? (
         <ConfirmModal
           alert={true}
@@ -200,7 +201,7 @@ const Loader = ({
         />
       ) : null}
       {children}
-    </>
+    </Aux>
   );
 };
 

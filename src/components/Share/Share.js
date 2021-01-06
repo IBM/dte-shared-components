@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Aux from "../Aux/Aux";
 import {
   Modal,
   Row,
@@ -119,7 +120,7 @@ const Share = ({
   };
 
   return (
-    <>
+    <Aux>
       {!initialValues ? (
         <Loading />
       ) : (
@@ -222,7 +223,7 @@ const Share = ({
           </Formik>
         </div>
       )}
-    </>
+    <Aux/>
   );
 };
 
