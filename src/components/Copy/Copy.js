@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { FormItem, CopyButton } from "carbon-components-react";
 import { HelperText, Label } from "../../index";
 
-// import { copyToClipboard } from "lib/utils";
+import { copyToClipboard } from "../../lib/utils";
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -44,7 +44,8 @@ const Copy = ({
   ...rest
 }) => {
   let button, content, label, help;
-  if (["input", "textinput"].includes(type)) content = <input value={value} readOnly {...rest} />;
+  if (["input", "textinput"].includes(type))
+    content = <input value={value} readOnly {...rest} />;
   else if (type === "textarea")
     content = (
       <textarea row="2" cols="80" readOnly {...rest}>
@@ -68,7 +69,8 @@ const Copy = ({
     try {
       e.preventDefault();
       e.stopPropagation();
-      if (target && onClick && typeof onClick === "function") onClick(target, value, e);
+      if (target && onClick && typeof onClick === "function")
+        onClick(target, value, e);
       else if (onClick && typeof onClick === "function") onClick(value, e);
       else copyToClipboard(value);
     } catch (err) {

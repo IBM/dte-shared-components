@@ -92,15 +92,17 @@ const OffsetButton = styled.div`
 const EditPageButton = (props) => {
   const [offset, setOffset] = useState(false);
   const listener = () => {
-    if (window.pageYOffset > 250) setOffset(true);
+    if (window && window.pageYOffset > 250) setOffset(true);
     else setOffset(false);
   };
   useEffect(() => {
     const debounceWrapper = debounce(listener, 250);
-    window.addEventListener("scroll", debounceWrapper);
-    return () => {
-      window.removeEventListener("scroll", debounceWrapper);
-    };
+    if (window) {
+      window.addEventListener("scroll", debounceWrapper);
+      return () => {
+        window.removeEventListener("scroll", debounceWrapper);
+      };
+    }
   }, []);
   return offset ? <OffsetButton {...props} /> : <Button {...props} />;
 };

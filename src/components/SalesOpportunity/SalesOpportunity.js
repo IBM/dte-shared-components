@@ -5,7 +5,7 @@ import { Column, Row, FormLabel } from "carbon-components-react";
 
 import { AutoGrowTextArea, TagInput, Dropdown, Tooltip } from "components";
 
-import { isEmpty } from "lib/utils";
+import { isEmpty } from "../../lib/utils";
 
 const FOURHOURS = 4;
 const ONEDAY = 24;
@@ -60,7 +60,8 @@ const SalesOpportunity = ({
   // }, []);
 
   useEffect(() => {
-    let idx = items && items.findIndex((o) => o.id === purpose || o.text === purpose);
+    let idx =
+      items && items.findIndex((o) => o.id === purpose || o.text === purpose);
     if (items && items[idx]) {
       let t = items[idx].text;
       let f = items[idx].fields;
@@ -82,14 +83,17 @@ const SalesOpportunity = ({
     if (policy && policy.reserve && !isEmpty(policy.reserve)) {
       if (!isEmpty(opportunity) && policy.reserve["opportunity"])
         r1 = policy.reserve["opportunity"];
-      else if (!isEmpty(customer) && policy.reserve["customer"]) r1 = policy.reserve["customer"];
+      else if (!isEmpty(customer) && policy.reserve["customer"])
+        r1 = policy.reserve["customer"];
       else if (!isEmpty(description) && policy.reserve["description"])
         r1 = policy.reserve["description"];
       else if (policy.reserve["*"]) r1 = policy.reserve["*"];
     }
     if (policy && policy.extend && !isEmpty(policy.extend)) {
-      if (!isEmpty(opportunity) && policy.extend["opportunity"]) r2 = policy.extend["opportunity"];
-      else if (!isEmpty(customer) && policy.extend["customer"]) r2 = policy.extend["customer"];
+      if (!isEmpty(opportunity) && policy.extend["opportunity"])
+        r2 = policy.extend["opportunity"];
+      else if (!isEmpty(customer) && policy.extend["customer"])
+        r2 = policy.extend["customer"];
       else if (!isEmpty(description) && policy.extend["description"])
         r2 = policy.extend["description"];
       else if (policy.extend["*"]) r2 = policy.extend["*"];
@@ -124,7 +128,8 @@ const SalesOpportunity = ({
     let name;
     if (n) name = n;
     else if (e && e.target && e.target.name) name = e.target.name;
-    else if (e && e.relatedTarget && e.relatedTarget.name) name = e.relatedTarget.name;
+    else if (e && e.relatedTarget && e.relatedTarget.name)
+      name = e.relatedTarget.name;
     else if (e && e.name) name = e.name;
     if (onBlur) onBlur(e);
     if (name) setFieldTouched(name, true);
@@ -215,16 +220,18 @@ const SalesOpportunity = ({
           </Column>
         ) : null}
 
-        {fields && (fields.includes("customer") || fields.includes("opportunity")) ? (
+        {fields &&
+        (fields.includes("customer") || fields.includes("opportunity")) ? (
           <Column lg={16} md={8} sm={4}>
             <Tooltip
               tooltipText={`![ReservationDurationPolicyInfographic](https://dte2.s3.us-east.cloud-object-storage.appdomain.cloud/ReservationDurationPolicyInfographic.png)`}
               markdown={true}
               direction="top"
-              align="start">
+              align="start"
+            >
               <button className="bx--tooltip__trigger bx--tooltip--a11y bx--tooltip__trigger--definition bx--tooltip--bottom bx--tooltip--align-start">
-                Entering an opportunity code will allow you to extend in one-week increments after
-                this initial request.
+                Entering an opportunity code will allow you to extend in
+                one-week increments after this initial request.
               </button>
             </Tooltip>
           </Column>
@@ -259,7 +266,10 @@ SalesOpportunity.defaultProps = {
       text: "Customer Demo",
       fields: ["customer", "opportunity"],
       required: ["customer", "opportunity"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0, "opportunity": TWOWEEK } },
+      policy: {
+        reserve: { "*": TWOWEEK },
+        extend: { "*": 0, opportunity: TWOWEEK },
+      },
       condition: "or",
     },
     {
@@ -267,7 +277,10 @@ SalesOpportunity.defaultProps = {
       text: "Customer Self-Service",
       fields: ["customer", "opportunity"],
       required: ["customer", "opportunity"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0, "opportunity": TWOWEEK } },
+      policy: {
+        reserve: { "*": TWOWEEK },
+        extend: { "*": 0, opportunity: TWOWEEK },
+      },
       condition: "or",
     },
     {
@@ -296,7 +309,10 @@ SalesOpportunity.defaultProps = {
       text: "Proof-of-Concept",
       fields: ["customer", "opportunity"],
       required: ["customer", "opportunity"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0, "opportunity": TWOWEEK } },
+      policy: {
+        reserve: { "*": TWOWEEK },
+        extend: { "*": 0, opportunity: TWOWEEK },
+      },
       condition: "or",
     },
     {
@@ -304,7 +320,10 @@ SalesOpportunity.defaultProps = {
       text: "Proof-of-Technology",
       fields: ["customer", "opportunity"],
       required: ["customer", "opportunity"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0, "opportunity": TWOWEEK } },
+      policy: {
+        reserve: { "*": TWOWEEK },
+        extend: { "*": 0, opportunity: TWOWEEK },
+      },
       condition: "or",
     },
     {
@@ -326,7 +345,10 @@ SalesOpportunity.defaultProps = {
       text: "Workshop",
       fields: ["customer", "opportunity", "description"],
       required: ["customer", "opportunity"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0, "opportunity": TWOWEEK } },
+      policy: {
+        reserve: { "*": TWOWEEK },
+        extend: { "*": 0, opportunity: TWOWEEK },
+      },
       condition: "or",
     },
   ],

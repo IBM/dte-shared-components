@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { IconButton, InvalidText, HelperText } from "components";
 
-import { getItemStyle, getListStyle, reorder } from "lib/utils";
+import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
 
 let StyledFormItem = styled(FormItem)`
   & .links__wrapper {
@@ -117,16 +117,25 @@ const Links = ({
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
-              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}>
+              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}
+            >
               {value.map((v, i) => {
                 return (
-                  <Draggable key={`${prefix}-${i}`} draggableId={`${prefix}-${i}`} index={i}>
+                  <Draggable
+                    key={`${prefix}-${i}`}
+                    draggableId={`${prefix}-${i}`}
+                    index={i}
+                  >
                     {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
                         <Row>
                           <TextInput
                             id={`${id || name}-label-${i}`}
@@ -203,7 +212,9 @@ const Links = ({
       {labelText ? <FormLabel>{labelText}</FormLabel> : null}
       {renderForm()}
       {renderValue()}
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

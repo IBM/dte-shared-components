@@ -5,11 +5,9 @@ import { throttle } from "lodash";
 
 import { Grid, Row, Column } from "carbon-components-react";
 import { Bookmark32, Favorite32 } from "@carbon/icons-react";
-import { ButtonSet, DataSearch, IconButton, ReactiveBase } from "components";
+import { DataSearch, IconButton, ReactiveBase } from "components";
 
 import initReactivesearch from "@appbaseio/reactivesearch/lib/server";
-
-import { isLoggedIn } from "lib/auth";
 
 const NAMESPACE = "collection";
 
@@ -80,7 +78,9 @@ const SearchBar = ({
     else Router.push(`${base}&${name}=%22${query || v || ""}%22`);
   };
 
-  const handleSubmitThrottled = useRef(throttle(handleSubmit, 500, { trailing: false })).current;
+  const handleSubmitThrottled = useRef(
+    throttle(handleSubmit, 500, { trailing: false })
+  ).current;
 
   const handleChange = (v, triggerQuery, e) => {
     setQuery(v);
@@ -95,35 +95,9 @@ const SearchBar = ({
   };
 
   const handleKeydown = (e) => {
-    if ((e.charCode || e.keyCode) === 13 || e.key === "Enter") handleSubmitThrottled(e);
+    if ((e.charCode || e.keyCode) === 13 || e.key === "Enter")
+      handleSubmitThrottled(e);
   };
-
-  let buttonset =
-    user && isLoggedIn(user) && (buttons || favorites || bookmarks) ? (
-      <ButtonSet className="search-buttons">
-        {favorites ? (
-          <IconButton
-            renderIcon={Favorite32}
-            iconDescription="My favorites"
-            kind="primary"
-            onClick={() => {
-              Router.push("/my/favorites");
-            }}
-          />
-        ) : null}
-        {bookmarks ? (
-          <IconButton
-            renderIcon={Bookmark32}
-            iconDescription="My bookmarked searches"
-            kind="primary"
-            onClick={() => {
-              Router.push("/my/bookmarks");
-            }}
-          />
-        ) : null}
-        {buttons}
-      </ButtonSet>
-    ) : null;
 
   let searchbar = (
     <>
@@ -133,7 +107,7 @@ const SearchBar = ({
         onValueSelected={handleSelected}
         onKeyDown={handleKeydown}
       />
-      {buttonset}
+      {buttons}
     </>
   );
 

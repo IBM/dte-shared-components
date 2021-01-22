@@ -13,7 +13,11 @@ const Styled = styled.span`
     width: 100%;
     max-width: 100%;
     min-height: 150px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.45)),
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.45)
+      ),
       url("//dte2.s3.us-east.cloud-object-storage.appdomain.cloud/data04.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -82,7 +86,7 @@ const Styled = styled.span`
   }
 `;
 
-import { isHex } from "lib/utils";
+import { isHex } from "../../lib/utils";
 
 const Leadspace = ({
   actions,

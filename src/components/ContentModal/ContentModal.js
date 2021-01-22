@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { SkeletonText } from "carbon-components-react";
-import { ConfirmModal, Markdown } from "../../index";
+import { ConfirmModal } from "../ConfirmModal/ConfirmModal";
+import { Markdown } from "../Markdown/Markdown";
 
 const ContentModal = ({
   onClose,

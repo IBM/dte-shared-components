@@ -2,16 +2,25 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormItem, FormLabel } from "carbon-components-react";
 
-import { HelperText } from "components";
-import { toLocaleDateString } from "lib/utils";
+import { HelperText } from "../../index";
+import { toLocaleDateString } from "../../lib/utils";
 
 // eslint-disable-next-line  no-unused-vars
-const DateLabel = ({ labelText, helperText, disabled, value, format, ...rest }) => {
+const DateLabel = ({
+  labelText,
+  helperText,
+  disabled,
+  value,
+  format,
+  ...rest
+}) => {
   return (
     <FormItem {...rest}>
       {labelText ? <FormLabel>{labelText}</FormLabel> : null}
       <div>{!value ? null : toLocaleDateString(value, format)}</div>
-      {helperText ? <HelperText className="bx--label" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--label" source={helperText} />
+      ) : null}
     </FormItem>
   );
 };

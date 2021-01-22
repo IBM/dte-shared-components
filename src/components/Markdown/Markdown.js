@@ -106,7 +106,7 @@ const underline = ({ children }) => {
   return <u>{children[0]?.props?.value}</u>;
 };
 
-const link = ({ href, children, ...rest, trackCTA }) => {
+const link = ({ href, children, trackCTA, ...rest }) => {
   return (
     <a
       onClick={(e) => {

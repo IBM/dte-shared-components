@@ -16,7 +16,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { ButtonSet, HelperText, IconButton, InvalidText } from "components";
 
-import { getItemStyle, getListStyle, reorder } from "lib/utils";
+import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
 
 let StyledFormItem = styled(FormItem)`
   & .regions__wrapper {
@@ -71,7 +71,9 @@ const Regions = ({
   const [regionName, setRegionName] = useState(defaults.name || "");
   const [template, setTemplate] = useState(defaults.template || "");
   const [region, setRegion] = useState(defaults.region || "");
-  const [requestMethod, setRequestMethod] = useState(defaults.requestMethod || "");
+  const [requestMethod, setRequestMethod] = useState(
+    defaults.requestMethod || ""
+  );
   const [description, setDescription] = useState(defaults.description || "");
   const [weight, setWeight] = useState(defaults.weight || 0);
   const [status, setStatus] = useState(defaults.status || "Enabled");
@@ -137,21 +139,30 @@ const Regions = ({
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
-              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}>
+              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}
+            >
               <StructuredListWrapper className="fullwidth condensed">
                 {renderHeader()}
                 {renderForm()}
                 {value &&
                   value.map((v, i) => {
                     return (
-                      <Draggable key={`${prefix}-${i}`} draggableId={`${prefix}-${i}`} index={i}>
+                      <Draggable
+                        key={`${prefix}-${i}`}
+                        draggableId={`${prefix}-${i}`}
+                        index={i}
+                      >
                         {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}
-                            className="bx--structured-list-row">
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                            className="bx--structured-list-row"
+                          >
                             <StructuredListCell>
                               <TextInput
                                 id={`${id || name}-name-${i}`}
@@ -182,7 +193,9 @@ const Regions = ({
                                   id={`${id || name}-requestMethod-${i}`}
                                   key={`${id || name}-requestMethod-${i}`}
                                   value={v.requestMethod}
-                                  onChange={(e) => update(e, "requestMethod", i)}
+                                  onChange={(e) =>
+                                    update(e, "requestMethod", i)
+                                  }
                                 />
                               </StructuredListCell>
                             ) : null}
@@ -206,7 +219,9 @@ const Regions = ({
                                   update(
                                     {
                                       target: {
-                                        value: e.target.checked ? "Enabled" : "Disabled",
+                                        value: e.target.checked
+                                          ? "Enabled"
+                                          : "Disabled",
                                       },
                                     },
                                     "status",
@@ -370,7 +385,9 @@ const Regions = ({
     <StyledFormItem>
       {label || labelText ? <FormLabel>{label || labelText}</FormLabel> : null}
       {renderField()}
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>
@@ -399,11 +416,13 @@ Regions.defaultProps = {
   labelTextDescription: "Description",
   labelTextStatus: "Enabled",
   helperText: "",
-  helperTextName: "Name of the environment.  Can be the same as the asset name.",
+  helperTextName:
+    "Name of the environment.  Can be the same as the asset name.",
   helperTextTemplate: "Template id provided after onboarding (1234567)",
   helperTextInfrastructure: "",
   helperTextRegion: "Template id region (APAC-2, EMEA or US-Central)",
-  helperTextRequestMethod: "OpenShift Pipeline (OpenLabs, Realtime, AWS, Azure)",
+  helperTextRequestMethod:
+    "OpenShift Pipeline (OpenLabs, Realtime, AWS, Azure)",
   helperTextDescription: "",
   helperTextStatus:
     "ON (template is available for provisioning) OFF (template unavailable for provisioning)",
