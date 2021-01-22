@@ -17,7 +17,7 @@ import { FormItem, FormLabel, TextArea } from "carbon-components-react";
 import { HelperText } from "../HelperText/HelperText";
 import { InvalidText } from "../InvalidText/InvalidText";
 
-// import { markdownToHtml, htmlToMarkdown } from "lib/utils";
+import { markdownToHtml, htmlToMarkdown } from "../../lib/utils";
 
 const StyledFormItem = styled(FormItem)`
   & .wysiwyg-wrapper {

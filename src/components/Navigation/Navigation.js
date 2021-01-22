@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { Markdown } from "components";
+import { Markdown } from "../Markdown/Markdown";
 
-import config from "data/navigation.json";
+//import config from "data/navigation.json"; //external data -IBM logo,label,links
 
 const Styled = styled.span`
   & .navigation {
@@ -64,14 +64,18 @@ const Styled = styled.span`
   }
 `;
 
-const Navigation = ({ namespace, ...rest }) => {
+const Navigation = ({ namespace, config, ...rest }) => {
   const router = useRouter();
 
   const navigation = config.links.map((n, i) => {
     return (
       <li key={`${namespace}--menu-${i}`} tabIndex={i + 2}>
         <Link href={n.href}>
-          <a className={!n.nomatch && router.pathname === n.href ? "selected" : ""}>
+          <a
+            className={
+              !n.nomatch && router.pathname === n.href ? "selected" : ""
+            }
+          >
             <Markdown source={n.label} disallowedTypes={["paragraph"]} />
           </a>
         </Link>
@@ -86,7 +90,10 @@ const Navigation = ({ namespace, ...rest }) => {
           <li key={`${namespace}--menu-logo`}>
             <Link href={config.logo.href}>
               <a className={`${namespace}--logo`}>
-                <Markdown source={config.logo.label} disallowedTypes={["paragraph"]} />
+                <Markdown
+                  source={config.logo.label}
+                  disallowedTypes={["paragraph"]}
+                />
               </a>
             </Link>
           </li>
@@ -99,10 +106,12 @@ const Navigation = ({ namespace, ...rest }) => {
 
 Navigation.defaultProps = {
   namespace: "navigation",
+  config: {},
 };
 
 Navigation.propTypes = {
   namespace: PropTypes.string,
+  config: PropTypes.object,
 };
 
 export default Navigation;

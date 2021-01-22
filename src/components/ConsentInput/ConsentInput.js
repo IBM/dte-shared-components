@@ -1,13 +1,17 @@
 import { Checkbox } from "carbon-components-react";
 import { HelperText } from "../HelperText/HelperText";
+
 const ConsentInput = ({ children, labelText, markdown, ...rest }) => {
   return (
     <Checkbox
-      labelText={markdown ? <HelperText source={labelText} /> : children || labelText}
+      labelText={
+        markdown ? <HelperText source={labelText} /> : children || labelText
+      }
       {...rest}
     />
   );
 };
+
 ConsentInput.defaultProps = {
   id: "consent",
   name: "consent",
@@ -16,4 +20,5 @@ ConsentInput.defaultProps = {
   markdown: true,
   onChange: () => {},
 };
+
 export default ConsentInput;

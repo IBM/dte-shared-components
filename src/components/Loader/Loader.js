@@ -4,7 +4,7 @@ import { shuffle } from "lodash";
 
 import { ConfirmModal } from "../ConfirmModal/ConfirmModal";
 import { Loading } from "../Loading/Loading";
-import Aux from "../Aux/Aux";
+import Aux from "../../hoc/Aux";
 
 const LOADING_TIMEOUT = 750;
 const ALERT_TIMEOUT = 90000;

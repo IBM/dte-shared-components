@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { IconButton, InvalidText, HelperText, NumberInput } from "components";
 
-import { getItemStyle, getListStyle, reorder } from "lib/utils";
+import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
 
 const StyledFormItem = styled(FormItem)`
   & .linkpatterns__wrapper {
@@ -70,7 +70,9 @@ const LinkPatterns = ({
 }) => {
   const [value, setValue] = useState(props.value || []);
   const [patternPort, setPatternPort] = useState(props.patternPort || "");
-  const [serviceTemplate, setServiceTemplate] = useState(props.serviceTemplate || "");
+  const [serviceTemplate, setServiceTemplate] = useState(
+    props.serviceTemplate || ""
+  );
 
   useEffect(() => {
     handleChange();
@@ -117,16 +119,25 @@ const LinkPatterns = ({
               {...provided.droppableProps}
               ref={provided.innerRef}
               style={getListStyle(snapshot.isDraggingOver)}
-              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}>
+              className={`${prefix}__wrapper${invalid ? " invalid" : ""}`}
+            >
               {value.map((v, i) => {
                 return (
-                  <Draggable key={`${prefix}-${i}`} draggableId={`${prefix}-${i}`} index={i}>
+                  <Draggable
+                    key={`${prefix}-${i}`}
+                    draggableId={`${prefix}-${i}`}
+                    index={i}
+                  >
                     {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>
+                        style={getItemStyle(
+                          snapshot.isDragging,
+                          provided.draggableProps.style
+                        )}
+                      >
                         <Row>
                           <NumberInput
                             id={`${id || name}-patternPort-${i}`}
@@ -207,7 +218,9 @@ const LinkPatterns = ({
       {label || labelText ? <FormLabel>{label || labelText}</FormLabel> : null}
       {renderForm()}
       {renderValue()}
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>
@@ -222,7 +235,8 @@ LinkPatterns.defaultProps = {
   helperText: "",
   // helperText: 'List of corresponding published service ports that exist in the template and the formatting to be presented to the user. For example, a Port of 80 and a Template of http://targetDomain:targetPort/test1 means the template contains a published service for internal port 80 that would be shown to the user as http://services-uscentral.skytap.com:12345/test1 when requesting an environment in US-Central.',
   helperTextPatternPort: "Opened port number",
-  helperTextServiceTemplate: "Please include the direct published port link full length",
+  helperTextServiceTemplate:
+    "Please include the direct published port link full length",
   labelText: "Link patterns",
   labelTextPatternPort: "Port",
   labelTextServiceTemplate: "Template",

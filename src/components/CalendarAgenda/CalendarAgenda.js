@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Tooltip } from "../Tooltip/Tooltip";
 
-// import { isEmpty } from "../lib/utils";
+import { isEmpty } from "../../lib/utils";
 
 const CalendarAgenda = ({ event: { description, url }, title, isEmpty }) => {
   let message = title;

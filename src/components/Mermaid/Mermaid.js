@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // cdn mermaid //cdnjs.cloudflare.com/ajax/libs/mermaid/8.6.4/mermaid.min.js
-import mermaid from "public/js/mermaid.min.js"; // package doesnt work from npm ... use min ver
+import mermaid from "./MermaidPkg";
 
 import { InlineNotification } from "carbon-components-react";
 import { Renew16 } from "@carbon/icons-react";
 
 import { ButtonSet, IconButton, AutoGrowTextArea } from "components";
 
-import { mongoObjectId } from "lib/utils";
+import { mongoObjectId } from "../../lib/utils";
 
 const ScrollingDiv = styled.div`
   width: 100%;
@@ -62,7 +62,8 @@ const MermaidDiagram = ({
   }, [svg]);
 
   const mermaidInitialize = () => {
-    if (typeof mermaid !== "undefined" && mermaid) mermaid.initialize({ ...config, theme: theme });
+    if (typeof mermaid !== "undefined" && mermaid)
+      mermaid.initialize({ ...config, theme: theme });
   };
 
   const mermaidRender = (data) => {
@@ -89,11 +90,18 @@ const MermaidDiagram = ({
 
   const mermaidBind = () => {
     const nodes =
-      (ref && ref.current && Array.from(ref.current.querySelectorAll("g.node.clickable"))) || [];
+      (ref &&
+        ref.current &&
+        Array.from(ref.current.querySelectorAll("g.node.clickable"))) ||
+      [];
     // console.log("mermaidBind", nodes, ref.current);
     nodes &&
       nodes.map((node) => {
-        const i = (node && node.attributes && node.attributes.getNamedItem("id").value) || "";
+        const i =
+          (node &&
+            node.attributes &&
+            node.attributes.getNamedItem("id").value) ||
+          "";
         // console.log("-->", node, i);
         if (onClick) {
           node &&
@@ -132,7 +140,11 @@ const MermaidDiagram = ({
   return (
     <div>
       <div key={`preview-${key}`} id={key} />
-      <ScrollingDiv key={`diagram-${key}`} ref={ref} dangerouslySetInnerHTML={{ __html: svg }} />
+      <ScrollingDiv
+        key={`diagram-${key}`}
+        ref={ref}
+        dangerouslySetInnerHTML={{ __html: svg }}
+      />
       {errors ? (
         <InlineNotification
           hideCloseButton={false}
@@ -212,7 +224,13 @@ const Mermaid = ({
           />
         </ButtonSet>
       ) : null}
-      <AutoGrowTextArea id={id} name={name} value={value} onChange={handleChange} {...rest} />
+      <AutoGrowTextArea
+        id={id}
+        name={name}
+        value={value}
+        onChange={handleChange}
+        {...rest}
+      />
     </>
   );
 };
@@ -247,7 +265,11 @@ Mermaid.defaultProps = {
   helperText: (
     <>
       For more informaion on what you can do with mermaidjs please refer to the{" "}
-      <a target="_blank" href="https://mermaid-js.github.io/mermaid/#/flowchart" rel="noreferrer">
+      <a
+        target="_blank"
+        href="https://mermaid-js.github.io/mermaid/#/flowchart"
+        rel="noreferrer"
+      >
         mermaidjs docs
       </a>
       .

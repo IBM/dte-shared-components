@@ -1,7 +1,7 @@
 import React from "react";
-import Aux from "../Aux/Aux";
+import Aux from "../../hoc/Aux";
 
-import altlangs from "data/altlang.json";
+import altlangs from "./altlang.json";
 
 const _rootPath = process.env.ROOT_PATH || "/";
 

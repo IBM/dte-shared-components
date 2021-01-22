@@ -15,7 +15,7 @@ import { Mailto } from "../Mailto/Mailto";
 const intersperse = (arr, sep = ", ") => {
   if (arr.length === 0) return [];
   return arr.slice(1).reduce(
-    function (xs, x) {
+    (xs, x) => {
       return xs.concat([sep, x]);
     },
     [arr[0]]

@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { FormItem, FormLabel, Tag, TextInput, TooltipDefinition } from "carbon-components-react";
+import {
+  FormItem,
+  FormLabel,
+  Tag,
+  TextInput,
+  TooltipDefinition,
+} from "carbon-components-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
-import { HelperText, InvalidText } from "components";
+import { HelperText } from "../HelperText/HelperText";
+import { InvalidText } from "../InvalidText/InvalidText";
 
-import { safeIdName } from "lib/utils";
+import { safeIdName } from "../../lib/utils";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -225,16 +232,25 @@ const TagInput = ({
   });
 
   if (disabled)
-    return <TextInput labelText={labelText} helperText={helperText} value={value} disabled />;
+    return (
+      <TextInput
+        labelText={labelText}
+        helperText={helperText}
+        value={value}
+        disabled
+      />
+    );
 
   const errorId = `${name}-error-msg`;
-
+  //--TIM line 286
   return (
     <FormItem id={id} {...rest}>
       {labelText ? (
         <FormLabel>
           {tooltipMessage ? (
-            <TooltipDefinition tooltipText={tooltipMessage}>{labelText}</TooltipDefinition>
+            <TooltipDefinition tooltipText={tooltipMessage}>
+              {labelText}
+            </TooltipDefinition>
           ) : (
             labelText
           )}
@@ -242,7 +258,9 @@ const TagInput = ({
       ) : null}
       <Styled>
         <div
-          className={`${namespace}${invalid ? " invalid" : ""}${focus ? " focus" : ""}`}
+          className={`${namespace}${invalid ? " invalid" : ""}${
+            focus ? " focus" : ""
+          }`}
           onKeyPress={() => {
             tagRef.current.focus();
           }}
@@ -251,7 +269,8 @@ const TagInput = ({
           }}
           {...(invalid ? invalidProps({ invalid, errorId }) : {})}
           role="listbox"
-          tabIndex={-1}>
+          tabIndex={-1}
+        >
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided, snapshot) => (
@@ -259,13 +278,15 @@ const TagInput = ({
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                   style={getListStyle(snapshot.isDraggingOver)}
-                  className={`${namespace}__tags`}>
+                  className={`${namespace}__tags`}
+                >
                   {tags &&
                     tags.map((tag, i) => (
                       <Draggable
                         key={`${safeIdName(tag)}-${i}`}
                         draggableId={`${safeIdName(tag)}-${i}`}
-                        index={i}>
+                        index={i}
+                      >
                         {(provided, snapshot) => (
                           <li
                             ref={provided.innerRef}
@@ -275,7 +296,8 @@ const TagInput = ({
                             style={getItemStyle(
                               snapshot.isDragging,
                               provided.draggableProps.style
-                            )}>
+                            )}
+                          >
                             <Tag
                               onClick={() => {
                                 editTag(i);
@@ -285,7 +307,8 @@ const TagInput = ({
                                 removeTag(i);
                               }}
                               type={type}
-                              filter={filter}>
+                              filter={filter}
+                            >
                               {tag}
                             </Tag>
                           </li>
