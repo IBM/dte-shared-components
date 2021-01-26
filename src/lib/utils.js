@@ -8,8 +8,9 @@ const { kebabCase, omit, isEqual: _isEqual } = require("lodash");
 import { Remarkable } from "remarkable";
 import * as Yup from "yup";
 
-//import slogans from "data/slogans.json";
-import navigation from "data/navigation.json";
+//import slogans from "data/slogans.json"; -- imported
+//import navigation from "data/navigation.json"; -- replaced with defualt string --pageTitle
+
 import { parse as json2csvParser } from "json2csv";
 
 const DATEFORMATS = [
@@ -639,8 +640,9 @@ const slogan = () => {
 };
 
 const pageTitle = () => {
-  return navigation["logo"]["label"] || "IBM  **DTE 2.0**";
+  return "page_Title";
 };
+//return navigation["logo"]["label"] || "IBM  **DTE 2.0**";
 
 const json2csv = (data, opts = {}) => {
   try {
