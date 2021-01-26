@@ -752,7 +752,7 @@ const remToPixels = (v, defaultsTo = 16) => {
   return result;
 };
 
-module.exports = {
+export {
   baseUrl,
   capitalizeFirstLetter,
   copyToClipboard,

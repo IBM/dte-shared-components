@@ -1,15 +1,12 @@
 import { ReactiveBase as ReactiveSearchReactiveBase } from "@appbaseio/reactivesearch";
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-
-import { getSearchBase } from "../../lib/crud";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 
 const ReactiveSearch = (props) => {
   return <ReactiveSearchReactiveBase {...props} />;
 };
 
 ReactiveSearch.defaultProps = {
-  url: `${getSearchBase()}`,
+  url: "",
   theme: {
     typography: {
       fontFamily: "ibm-plex-sans,Helvetica Neue,Arial,sans-serif",
