@@ -1,6 +1,6 @@
 //Methods that can't be imported as a prop and don't have any sensitive information
 
-const toBoolean = (value) => {
+export const toBoolean = (value) => {
   switch (value) {
     case true:
     case "true":
@@ -20,7 +20,7 @@ const toBoolean = (value) => {
   }
 };
 
-const isBasic = (values = {}, defaultValue = true) => {
+export const isBasic = (values = {}, defaultValue = true) => {
   if (!values) return defaultValue;
   if (values && values.simple !== null) return values.simple;
   return values &&
@@ -29,9 +29,4 @@ const isBasic = (values = {}, defaultValue = true) => {
     !values.url
     ? false
     : defaultValue;
-};
-
-module.exports = {
-  toBoolean,
-  isBasic,
 };
