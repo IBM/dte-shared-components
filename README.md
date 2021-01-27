@@ -1,19 +1,18 @@
 # dte-shared-private
-   ## shahbaz_react-components 
 
-This is npm registry, upon any changes required steps:
+## This is npm registry, upon any changes required steps:
     *** npm run build ***           - after any changes to this project.
     It needs to be publish everytime made changes.
 
 
-To publish here are the commands involved --
+## To publish here are the commands involved --
     $ git add .
     $ git commit -m "release 0.0.1"
     $ git tag 0.0.1
     $ git push && git push --tags
     $ npm publish 
 
-error handling 403:
+## Error handling 403:
 npm version <the version number >
 
 This command is for the test project to updatew version :
@@ -28,4 +27,4 @@ kill <PID number>
 
 npm add node-sass: it is requied to read .css/scss file 
 
-yarn add @carbon/type  : we need this make import saas work from carbon components
+yarn add @carbon/type  : we need this make import saas work from carbon component
