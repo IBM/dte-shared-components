@@ -4,6 +4,7 @@ import fetch from "isomorphic-unfetch";
 const moment = require("moment");
 const removeMarkdown = require("remove-markdown");
 const { kebabCase, omit, isEqual: _isEqual } = require("lodash");
+export const hasWindow = typeof window !== "undefined";
 
 import { Remarkable } from "remarkable";
 import * as Yup from "yup";
@@ -220,8 +221,10 @@ const slugify = (text = "") =>
   );
 
 const baseUrl = (path) => {
-  const { origin } = window.location;
-  return `${origin}${path}`;
+  if (hasWindow) {
+    const { origin } = window.location;
+    return `${origin}${path}`;
+  }
 };
 
 const toBoolean = (value) => {

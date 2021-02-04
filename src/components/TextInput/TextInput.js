@@ -1,10 +1,15 @@
 import React from "react";
 
 import { TextInput as CarbonTextInput } from "carbon-components-react";
-import { HelperText } from "../../index";
+import { HelperText } from "../HelperText/HelperText";
 
 const TextInput = ({ helperText, ...rest }) => {
-  return <CarbonTextInput helperText={<HelperText source={helperText} />} {...rest} />;
+  return (
+    <CarbonTextInput
+      helperText={<HelperText source={helperText} />}
+      {...rest}
+    />
+  );
 };
 
 TextInput.defaultProps = {

@@ -4,7 +4,7 @@ import { isEmpty } from "lodash";
 import { Tag } from "carbon-components-react";
 import { CloseOutline32 } from "@carbon/icons-react";
 
-import { IconButton } from "components";
+import { IconButton } from "../IconButton/IconButton";
 
 const SelectedFilters = (props) => {
   return (
@@ -32,7 +32,12 @@ const SelectedFilters = (props) => {
           )
             return null;
           return (
-            <Tag filter type="gray" key={component} onClick={() => clearFilter(component)}>
+            <Tag
+              filter
+              type="gray"
+              key={component}
+              onClick={() => clearFilter(component)}
+            >
               <b>{selectedValues[component].label}</b>:{" "}
               {Array.isArray(selectedValues[component].value)
                 ? selectedValues[component].value.join(", ")

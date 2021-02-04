@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FormItem, FormLabel } from "carbon-components-react";
 
 import { HelperText } from "../../index";
-import { toLocaleDateString } from "../../lib/utils";
+import { toLocaleDateString } from "../../methods";
 
 // eslint-disable-next-line  no-unused-vars
 const DateLabel = ({

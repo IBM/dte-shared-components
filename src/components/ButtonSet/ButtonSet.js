@@ -1,9 +1,12 @@
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const ButtonSetLeft = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  // align-items: center;
+  align-items: flex-start;
   flex-grow: 1;
   flex-shrink: 1;
   flex-wrap: wrap;
@@ -16,7 +19,8 @@ const ButtonSetLeft = styled.div`
 const ButtonSetRight = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  // align-items: center;
+  align-items: flex-start;
   flex-grow: 1;
   flex-shrink: 1;
   flex-wrap: wrap;
@@ -29,7 +33,8 @@ const ButtonSetRight = styled.div`
 const ButtonSetLeftNoWrap = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  // align-items: center;
+  align-items: flex-start;
   flex-grow: 1;
   flex-shrink: 1;
   justify-content: flex-start;
@@ -41,7 +46,8 @@ const ButtonSetLeftNoWrap = styled.div`
 const ButtonSetRightNoWrap = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  // align-items: center;
+  align-items: flex-start;
   flex-grow: 1;
   flex-shrink: 1;
   justify-content: flex-end;
@@ -50,22 +56,29 @@ const ButtonSetRightNoWrap = styled.div`
   }
 `;
 
-const ButtonSet = ({ align = "right", wrap, ...rest }) =>
-  align === "left" ? (
-    wrap ? (
+const ButtonSet = ({ align = "right", wrap, ...rest }) => {
+  if (!rest || !rest.children) return null;
+  if (align === "left")
+    return wrap ? (
       <ButtonSetLeft {...rest} />
     ) : (
       <ButtonSetLeftNoWrap {...rest} />
-    )
-  ) : wrap ? (
+    );
+  return wrap ? (
     <ButtonSetRight {...rest} />
   ) : (
     <ButtonSetRightNoWrap {...rest} />
   );
+};
 
-ButtonSet.defaults = {
+ButtonSet.defaultProps = {
   align: "right",
-  wrap: true,
+  wrap: false,
+};
+
+ButtonSet.propTypes = {
+  align: PropTypes.string,
+  wrap: PropTypes.bool,
 };
 
 export default ButtonSet;

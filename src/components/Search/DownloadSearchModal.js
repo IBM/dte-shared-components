@@ -13,7 +13,9 @@ import { Csv32, Json32 } from "@carbon/icons-react";
 import { ButtonSet, IconButton } from "components";
 
 import { saveAs } from "file-saver";
-import { json2csv } from "../../lib/utils";
+
+//import { json2csv } from "../../lib/utils";
+import { json2csv } from "../../methods";
 
 const Row = styled.div`
   width: 100%;

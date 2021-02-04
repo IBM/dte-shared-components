@@ -16,7 +16,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { ButtonSet, HelperText, IconButton, InvalidText } from "components";
 
-import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
+// import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
 
 let StyledFormItem = styled(FormItem)`
   & .regions__wrapper {
@@ -78,6 +78,32 @@ const Regions = ({
   const [weight, setWeight] = useState(defaults.weight || 0);
   const [status, setStatus] = useState(defaults.status || "Enabled");
 
+  const getItemStyle = (isDragging, draggableStyle) => {
+    let style = {
+      userSelect: "none",
+      ...draggableStyle,
+    };
+    // if (isDragging) {
+    //   style.margin = "0";
+    //   style.border = "0";
+    // }
+    return style;
+  };
+
+  const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    return result;
+  };
+  const getListStyle = (isDraggingOver) => {
+    let style = {
+      overflow: "hidden",
+      background: isDraggingOver ? "#e7e7e7" : "none",
+    };
+    if (isDraggingOver) style.paddingBottom = "5rem";
+    return style;
+  };
   const handleChange = () => {
     if (onChange && typeof onChange === "function") onChange(name, value);
   };
