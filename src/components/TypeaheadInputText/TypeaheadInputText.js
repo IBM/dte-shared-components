@@ -108,7 +108,8 @@ const TypeaheadInputText = ({
   }, [value]);
 
   useEffect(() => {
-    if (name && onChange && typeof onChange === "function") onChange(name, inputValue);
+    if (name && onChange && typeof onChange === "function")
+      onChange(name, inputValue);
   }, [inputValue]);
 
   const handleSearch = async ({ value }) => {
@@ -118,7 +119,8 @@ const TypeaheadInputText = ({
     try {
       const v = value.trim().toLowerCase();
       const result = await items(v);
-      const reduced = result && result.length > max ? result.slice(0, max) : result;
+      const reduced =
+        result && result.length > max ? result.slice(0, max) : result;
       setSuggestions(reduced || []);
     } catch (err) {
       console.log("Error", err.message || err);
@@ -148,8 +150,12 @@ const TypeaheadInputText = ({
     }
   };
 
-  const handleSearchThrottled = useRef(throttle(handleSearch, 750, { maxWait: 2000 })).current;
-  const handleChangeThrottled = useRef(throttle(handleChange, 750, { maxWait: 3000 })).current;
+  const handleSearchThrottled = useRef(
+    throttle(handleSearch, 750, { maxWait: 2000 })
+  ).current;
+  const handleChangeThrottled = useRef(
+    throttle(handleChange, 750, { maxWait: 3000 })
+  ).current;
 
   const inputProps = {
     id: id || name,
@@ -180,7 +186,10 @@ const TypeaheadInputText = ({
         />
         {loading ? (
           <div className="loading">
-            <InlineLoading iconDescription="Loading ..." status={loading ? "active" : "finished"} />
+            <InlineLoading
+              iconDescription="Loading ..."
+              status={loading ? "active" : "finished"}
+            />
           </div>
         ) : null}
       </Row>
@@ -205,11 +214,16 @@ const TypeaheadInputText = ({
         />
         {loading ? (
           <div className="loading">
-            <InlineLoading iconDescription="Loading ..." status={loading ? "active" : "finished"} />
+            <InlineLoading
+              iconDescription="Loading ..."
+              status={loading ? "active" : "finished"}
+            />
           </div>
         ) : null}
       </Row>
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

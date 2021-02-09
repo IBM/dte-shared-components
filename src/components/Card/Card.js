@@ -12,7 +12,7 @@ import {
 } from "@carbon/ibmdotcom-utilities";
 import { settings } from "carbon-components";
 
-import { isExternalUrl, isHex } from "../../lib/utils";
+//import { isExternalUrl, isHex } from "../../lib/utils";
 
 import { Ribbon } from "../Ribbon/Ribbon";
 import { Flag } from "../Flag/Flag";
@@ -105,6 +105,19 @@ const Card = ({
 }) => {
   const CardTile = Tile; //type === "link" ? ClickableTile : Tile;
   let style;
+  const isExternalUrl = (url) => {
+    if (!url || url === "") return false;
+    let pattern = /^((http|https|ftp):\/\/)/;
+    url = url.toString();
+    return pattern.test(url) ? true : false;
+  };
+  const isHex = (h) => {
+    try {
+      return /^#[0-9A-F]{6}$/i.test(h);
+    } catch (err) {
+      return false;
+    }
+  };
   if (background) {
     background = parseString(background);
     if (background && isHex(background)) {

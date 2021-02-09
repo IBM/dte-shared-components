@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import { Column, Row, FormLabel } from "carbon-components-react";
 
-import { AutoGrowTextArea, TagInput, Dropdown, Tooltip } from "components";
+import { AutoGrowTextArea, TagInput, Dropdown, Tooltip } from "../../index";
 
-import { isEmpty } from "../../lib/utils";
+import { isEmpty } from "../../methods";
 
 const FOURHOURS = 4;
 const ONEDAY = 24;

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { Grid, Row, Column } from "carbon-components-react";
 
-import { Markdown } from "components";
+import { Markdown } from "../Markdown/Markdown";
 
 const Styled = styled.span`
   & .leadspace {

@@ -1,9 +1,7 @@
 import React from "react";
 import { Loading as CarbonLoading } from "carbon-components-react";
 
-const Loading = (props) => {
-  return <CarbonLoading {...props} />;
-};
+const Loading = (props) => <CarbonLoading {...props} />;
 
 Loading.defaultProps = {
   withOverlay: false,

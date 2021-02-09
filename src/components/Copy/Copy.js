@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { FormItem, CopyButton } from "carbon-components-react";
 import { HelperText, Label } from "../../index";
 
-import { copyToClipboard } from "../../lib/utils";
-
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
@@ -29,7 +27,6 @@ const StyledDiv = styled.div`
 `;
 
 const Copy = ({
-  copyToClipboard,
   labelText,
   helperText,
   feedback,
@@ -64,6 +61,24 @@ const Copy = ({
       onClick={(e) => handleCopy(e)}
     />
   );
+
+  const copyToClipboard = (v, el) => {
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        navigator.clipboard.writeText(v);
+      } else if (typeof window !== "undefined" && window.clipboardData) {
+        window.clipboardData.setData("text", v);
+      } else if (typeof el !== "undefined" && typeof document !== "undefined") {
+        el.focus();
+        el.select();
+        document.execCommand("copy");
+      } else {
+        alert(`Unable to copy: ${v}`);
+      }
+    } catch (err) {
+      console.log("copyToClipboard error", err.message || err);
+    }
+  };
 
   const handleCopy = (e) => {
     try {

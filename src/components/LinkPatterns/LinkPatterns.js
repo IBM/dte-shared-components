@@ -8,7 +8,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { IconButton, InvalidText, HelperText, NumberInput } from "components";
 
-import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
+import { getItemStyle, getListStyle, reorder } from "../../methods";
 
 const StyledFormItem = styled(FormItem)`
   & .linkpatterns__wrapper {

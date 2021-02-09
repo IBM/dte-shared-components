@@ -137,7 +137,9 @@ const TypeaheadInput = ({
   // componentDidMount
   useEffect(() => {
     if (minimumInputSize <= 0) init();
-    document.getElementById(getInputId()).addEventListener("keydown", inputKeyListener);
+    document
+      .getElementById(getInputId())
+      .addEventListener("keydown", inputKeyListener);
   }, []);
 
   const init = async () => {
@@ -157,21 +159,28 @@ const TypeaheadInput = ({
   // based on the clicked suggestion. Teach Autosuggest how to calculate the
   // input value for every given suggestion.
   const getSuggestionValue = (suggestion) => {
-    if (itemToValue && typeof itemToValue === "function") return itemToValue(suggestion);
+    if (itemToValue && typeof itemToValue === "function")
+      return itemToValue(suggestion);
     return flatSuggestion ? suggestion : suggestion[suggestionPropertyToUse];
   };
 
   // Use your imagination to render suggestions.
   const renderSuggestion = (suggestion) => {
-    if (itemToObject && typeof itemToObject === "function") return itemToObject(suggestion);
-    return <div>{flatSuggestion ? suggestion : suggestion[suggestionPropertyToUse]}</div>;
+    if (itemToObject && typeof itemToObject === "function")
+      return itemToObject(suggestion);
+    return (
+      <div>
+        {flatSuggestion ? suggestion : suggestion[suggestionPropertyToUse]}
+      </div>
+    );
   };
 
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   const onSuggestionsFetchRequested = async ({ value = "" }) => {
     setSuggestionsState([]);
-    if (value.trim().length < minimumInputSize || value.indexOf(",") !== -1) return;
+    if (value.trim().length < minimumInputSize || value.indexOf(",") !== -1)
+      return;
     setInputBlurred(false);
     setFetchingSuggestions(true);
     const inputValue = value.trim().toLowerCase();
@@ -194,7 +203,11 @@ const TypeaheadInput = ({
   };
 
   const onSuggestionsFetchRequestedThrottled = useCallback(
-    debounce(onSuggestionsFetchRequested, 750, { maxWait: 1250, trailing: true, leading: true }),
+    debounce(onSuggestionsFetchRequested, 750, {
+      maxWait: 1250,
+      trailing: true,
+      leading: true,
+    }),
     []
   );
 
@@ -233,7 +246,8 @@ const TypeaheadInput = ({
       .split(delimiter)
       .map((o) => o && o.toString().trim())
       .filter((o) => o && o !== "");
-    if (values && Array.isArray(values) && values.length > 1) batchSuggestionHandler(values);
+    if (values && Array.isArray(values) && values.length > 1)
+      batchSuggestionHandler(values);
     else selectSuggestionHandler(values[0], true);
   };
 
@@ -245,7 +259,8 @@ const TypeaheadInput = ({
         .split(delimiter)
         .map((o) => o && o.toString().trim())
         .filter((o) => o && o !== "");
-      if (values && Array.isArray(values) && values.length > 1) batchSuggestionHandler(values);
+      if (values && Array.isArray(values) && values.length > 1)
+        batchSuggestionHandler(values);
       else selectSuggestionHandler(values[0], true);
     } else selectSuggestionHandler(value, false);
     setInputValueState("");
@@ -296,7 +311,9 @@ const TypeaheadInput = ({
         onSuggestionsClearRequested={() => setSuggestionsState([])}
         getSuggestionValue={getSuggestionValue}
         renderSuggestion={renderSuggestion}
-        onSuggestionSelected={(event, { suggestion }) => addEntry(suggestion, false)}
+        onSuggestionSelected={(event, { suggestion }) =>
+          addEntry(suggestion, false)
+        }
         shouldRenderSuggestions={(v) => {
           if (minimumInputSize <= 0) return true;
           return v.trim().length > minimumInputSize ? true : false;
@@ -306,7 +323,8 @@ const TypeaheadInput = ({
           container: `react-autosuggest__container`, // ${!inputBlurred ? "" : "fullwidth"}`,
           input: "bx--text-input",
           suggestionsContainer: "react-autosuggest__suggestions-container",
-          suggestionsContainerOpen: "react-autosuggest__suggestions-container--open",
+          suggestionsContainerOpen:
+            "react-autosuggest__suggestions-container--open",
           suggestionsList: "react-autosuggest__suggestions-list",
           suggestion: "react-autosuggest__suggestion",
           suggestionHighlighted: "react-autosuggest__suggestion--highlighted",
@@ -320,10 +338,13 @@ const TypeaheadInput = ({
           inputValueState &&
           inputValueState.length > 0 &&
           (fetchingSuggestions ||
-            (!fetchingSuggestions && suggestionsState && suggestionsState.length > 0))
+            (!fetchingSuggestions &&
+              suggestionsState &&
+              suggestionsState.length > 0))
             ? "input-status-section--visible"
             : ""
-        }`}>
+        }`}
+      >
         <InlineLoading
           iconDescription="loading data..."
           status={`${fetchingSuggestions ? "active" : "finished"}`}
@@ -339,7 +360,8 @@ const TypeaheadInput = ({
           suggestionsState.length == 0
             ? "input-add-section--visible"
             : ""
-        }`}>
+        }`}
+      >
         {/* show manual add button if lookup failed to match user input */}
         <IconButton
           disabled={componentDisabled}
@@ -360,7 +382,9 @@ const TypeaheadInput = ({
     <FormItem>
       {labelText ? <FormLabel>{labelText}</FormLabel> : null}
       {suggestionInput}
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

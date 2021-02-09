@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import ct from "countries-and-timezones"; // has proper IANA data for dates and times with dst and utc offsets
 import moment from "moment";
 import styled from "styled-components";
-//work on it ---TIM++++++++
 import {
   DatePicker,
   DatePickerInput,
@@ -15,7 +14,8 @@ import {
 } from "carbon-components-react";
 
 import { HelperText } from "../HelperText/HelperText";
-import { isEmpty, isDate, isTime, parseDate } from "../../lib/utils";
+// import { isEmpty, isDate, isTime, parseDate } from "../../lib/utils";
+import { isEmpty, isDate, isTime, parseDate } from "../../methods";
 
 // from https://www.npmjs.com/package/compact-timezone-list
 const minimalTimezoneSet = [

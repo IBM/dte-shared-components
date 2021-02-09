@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { HelperText } from "../HelperText/HelperText";
 import { InvalidText } from "../InvalidText/InvalidText";
 
-import { safeIdName } from "../../lib/utils";
+import { safeIdName } from "../../methods";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
