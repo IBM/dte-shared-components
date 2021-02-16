@@ -3,6 +3,14 @@ import { Remarkable } from "remarkable";
 const moment = require("moment");
 const TurndownService = require("turndown").default;
 
+const DATEFORMATS = [
+  moment.ISO_8601,
+  "YYYY-MM-DDTHH:mm:ss.SSSZ",
+  "MM/DD/YYYY hh:mm A Z",
+  "MM/DD/YYYY hh:mm:ss A Z",
+  "YYYY-MM-DD HH:mm:ss",
+];
+
 export const toBoolean = (value) => {
   switch (value) {
     case true:
@@ -155,6 +163,21 @@ const parseDate = (value) => {
 const isTime = (value) => {
   const regex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
   return value && regex.test(value) ? true : false;
+};
+
+const isHex = (h) => {
+  try {
+    return /^#[0-9A-F]{6}$/i.test(h);
+  } catch (err) {
+    return false;
+  }
+};
+
+const isExternalUrl = (url) => {
+  if (!url || url === "") return false;
+  let pattern = /^((http|https|ftp):\/\/)/;
+  url = url.toString();
+  return pattern.test(url) ? true : false;
 };
 
 export const isEmpty = (value) => {

@@ -1,5 +1,5 @@
 import React from "react";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import styled from "styled-components";
 import { Coronavirus16, Rule16, Badge16 } from "@carbon/icons-react";
@@ -24,6 +24,7 @@ const Styled = styled.div`
     vertical-align: top;
   }
 `;
+// const Styled = styled.div``;
 
 const Flag = ({ label, color, ...rest }) => {
   const flagClass = classNames(color);
@@ -59,9 +60,9 @@ Flag.defaultProps = {
   color: "black",
 };
 
-// Flag.propTypes = {
-//   label: PropTypes.string,
-//   color: PropTypes.string,
-// };
+Flag.propTypes = {
+  label: PropTypes.string,
+  color: PropTypes.string,
+};
 
 export default Flag;
