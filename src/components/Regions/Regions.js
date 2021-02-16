@@ -14,7 +14,7 @@ import {
 import { AddAlt32, SubtractAlt32 } from "@carbon/icons-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { ButtonSet, HelperText, IconButton, InvalidText } from "components";
+import { ButtonSet, HelperText, IconButton, InvalidText } from "../../index";
 
 // import { getItemStyle, getListStyle, reorder } from "../../lib/utils";
 

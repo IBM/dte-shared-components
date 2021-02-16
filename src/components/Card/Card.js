@@ -12,7 +12,7 @@ import {
 } from "@carbon/ibmdotcom-utilities";
 import { settings } from "carbon-components";
 
-//import { isExternalUrl, isHex } from "../../lib/utils";
+import { isExternalUrl, isHex } from "../../methods";
 
 import { Ribbon } from "../Ribbon/Ribbon";
 import { Flag } from "../Flag/Flag";
@@ -183,10 +183,12 @@ const Card = ({
           if (!onClick || typeof onClick === "undefined") return;
           onClick(e);
         }
-        if (e.metaKey || e.ctrlKey) window.open(cta.href);
+        let w = getWindow();
+        if ((e.metaKey || e.ctrlKey) && w) w.open(cta.href);
         else if (onClick) onClick(e);
         else if (!isExternalUrl(cta.href)) Router.push(cta.href);
-        else window.open(cta.href);
+        else if (w) w.open(cta.href);
+        else return;
       }}
       {...props}
     >
