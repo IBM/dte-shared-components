@@ -2,7 +2,9 @@ Current functional version -- 3.1.0
 
 Framework :  React/Next -- Yarn
 
-## NPM registry link : https://www.npmjs.com/package/dte-shared-private
+## NPM registry link : 
+https://www.npmjs.com/package/dte-shared-private
+
 Package include about 80 React components which are mainly drived from IBM Carbon desined components. https://www.carbondesignsystem.com/components/overview.
 
 
