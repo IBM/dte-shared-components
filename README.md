@@ -1,4 +1,4 @@
-Current working version 3.1.0
+Current functional version -- 3.1.0
 
 Framework :  React/Next -- Yarn
 
@@ -12,7 +12,7 @@ yarn add styled-components@4.3.2
 
 ## Getting started
 
-To install `carbon-components-react` in your project, you will need to run the
+To install `dte-shared-private` in your project, you will need to run the
 following command using [npm](https://www.npmjs.com/):
 
 ```bash
