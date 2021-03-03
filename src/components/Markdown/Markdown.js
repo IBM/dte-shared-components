@@ -122,6 +122,10 @@ const link = ({ href, children, trackCTA, ...rest }) => {
 };
 
 const Markdown = ({ linkTarget = "_blank", escapeHtml, ...rest }) => {
+  let plugins = [
+    remarkSubSuper,
+    [remarkUnderline, { marker: "++", tagType: "u" }],
+  ];
   let renderers = { code, inlineCode, underline, sub: "sub", sup: "sup" };
   if (linkTarget === "_blank")
     renderers = Object.assign({}, renderers, { link });
@@ -129,7 +133,7 @@ const Markdown = ({ linkTarget = "_blank", escapeHtml, ...rest }) => {
     return (
       <Styled>
         <ReactMarkdownWithHtml
-          plugins={[remarkUnderline, { marker: "++", tagType: "u" }]}
+          // plugins={[remarkUnderline, { marker: "++", tagType: "u" }]}
           linkTarget={linkTarget}
           renderers={renderers}
           escapeHtml={false}
@@ -141,10 +145,7 @@ const Markdown = ({ linkTarget = "_blank", escapeHtml, ...rest }) => {
   return (
     <Styled>
       <ReactMarkdown
-        plugins={[
-          remarkSubSuper,
-          [remarkUnderline, { marker: "++", tagType: "u" }],
-        ]}
+        // plugins={plugins}
         linkTarget={linkTarget}
         renderers={renderers}
         {...rest}

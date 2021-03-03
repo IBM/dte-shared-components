@@ -1,10 +1,3 @@
-@import "~@carbon/type/scss/font-face/mono";
-@import "~@carbon/type/scss/font-face/sans";
-@include carbon--font-face-mono();
-@include carbon--font-face-sans();
-@import "~carbon-components/scss/globals/scss/styles.scss";
-@import "~carbon-components/scss/globals/scss/_typography.scss";
-@import "~carbon-components/scss/globals/scss/_tooltip.scss";
 ///DOWN BELOW ARE PER COMPONENTS
 @import "~carbon-components/scss/components/breadcrumb/_breadcrumb.scss";
 @import "~carbon-components/scss/components/skeleton/_skeleton-text.scss";
@@ -26,10 +19,24 @@
 @import "~carbon-components/scss/components/combo-box/_combo-box.scss";
 @import "~carbon-components/scss/components/form/_form.scss";
 @import "~carbon-components/scss/components/skeleton/_skeleton-text.scss";
-//tested until here
 // @import "carbon-components/scss/components/data-table/_data-table.scss";
-// @import "~@carbon/ibmdotcom-styles/scss/components/buttongroup/buttongroup";
-// @import "~@carbon/ibmdotcom-styles/scss/components/card/index";
-// @import "~@carbon/ibmdotcom-styles/scss/components/tableofcontents/index";
-// @import "~carbon-components/scss/components/notification/_inline-notification.scss";
-// @import "~carbon-components/scss/components/notification/_toast-notification.scss";
+@import "~@carbon/ibmdotcom-styles/scss/components/buttongroup/buttongroup";
+@import "~@carbon/ibmdotcom-styles/scss/components/card/index";
+@import "~@carbon/ibmdotcom-styles/scss/components/tableofcontents/index";
+@import "~carbon-components/scss/components/notification/_inline-notification.scss";
+@import "~carbon-components/scss/components/notification/_toast-notification.scss";
+
+// // custom styles
+// @import "./card.scss"; // card styling andoverrides
+// @import "./calendar.scss"; // calendar styling and overrides
+// @import "./carousel.scss"; // carousel styling and overrides
+// @import "./collection.scss"; // collections global styling and overrides
+// // @import "./draft.scss"; // react draft wywsiwyg
+// @import "./list.scss"; // list global overrides
+// @import "./mermaid.scss"; // mermaid js
+// @import "./overrides.scss"; // general styling overrides
+// @import "./quill.scss"; // react quill wywsiwyg
+// @import "./reservation.scss"; // global reservations styling and overrides
+// @import "./structuredlist.scss"; // structured list styling and overrides
+// @import "./tabs.scss"; // tabs styling and overrides
+// @import "./view.scss"; // general view styling and overrides

@@ -160,7 +160,7 @@ const Card = ({
   return (
     <CardTile
       data-autoid={`${stablePrefix}--card`}
-      data-href={data.url || cta.href}
+      data-href={data?.url || cta?.href}
       className={classNames(
         `${namespace}`,
         `${prefix}--card`,

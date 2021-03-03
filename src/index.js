@@ -8,7 +8,7 @@ export { default as ButtonSet } from "./components/ButtonSet/ButtonSet";
 export { default as CalendarAgenda } from "./components/CalendarAgenda/CalendarAgenda";
 export { default as CalendarMinToolbar } from "./components/CalendarMinToolbar/CalendarMinToolbar";
 export { default as CalendarEvent } from "./components/CalendarEvent/CalendarEvent";
-// export { default as Card } from "./components/Card/Card";
+export { default as Card } from "./components/Card/Card";
 export { default as CardSection } from "./components/CardSection/CardSection";
 export { default as Checkbox } from "./components/Checkbox/Checkbox";
 export { default as ContentModal } from "./components/ContentModal/ContentModal";
