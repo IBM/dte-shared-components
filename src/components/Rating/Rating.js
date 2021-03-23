@@ -140,7 +140,7 @@ Rating.defaultProps = {
 
 Rating.propTypes = {
   buttonSetAlign: PropTypes.string,
-  buttonSetStyle: PropTypes.string,
+  buttonSetStyle: PropTypes.object,
   dimension: PropTypes.string,
   initialRating: PropTypes.string,
   labelText: PropTypes.string,

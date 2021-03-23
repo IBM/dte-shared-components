@@ -1,16 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-
-// cdn mermaid //cdnjs.cloudflare.com/ajax/libs/mermaid/8.6.4/mermaid.min.js
 import mermaid from "./MermaidPkg";
 
 import { InlineNotification } from "carbon-components-react";
 import { Renew16 } from "@carbon/icons-react";
 
-import { ButtonSet, IconButton, AutoGrowTextArea } from "components";
+import { ButtonSet, IconButton, AutoGrowTextArea } from "../../index";
 
-import { mongoObjectId } from "../../lib/utils";
+import { mongoObjectId } from "../../methods";
 
 const ScrollingDiv = styled.div`
   width: 100%;

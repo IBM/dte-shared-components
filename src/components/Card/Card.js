@@ -14,8 +14,7 @@ import { settings } from "carbon-components";
 
 import { isExternalUrl, isHex } from "../../methods";
 
-import { Ribbon } from "../Ribbon/Ribbon";
-import { Flag } from "../Flag/Flag";
+import { Ribbon, Flag } from "../../index";
 
 const Styled = styled.div`
   & .bx--card__wrapper {

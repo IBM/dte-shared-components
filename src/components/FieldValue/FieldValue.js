@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FormItem, FormLabel } from "carbon-components-react";
 
-import HelperText from "./HelperText";
+import HelperText from "../../index";
 
 const FieldValue = ({
   helperText,
@@ -20,11 +20,20 @@ const FieldValue = ({
       <div>
         {value}
         {hiddenInput ? (
-          <input type="hidden" name={name || id} id={id || name} value={value} />
+          <input
+            type="hidden"
+            name={name || id}
+            id={id || name}
+            value={value}
+          />
         ) : null}
       </div>
       {helperText ? (
-        <HelperText className="bx--label" source={helperText} withHtml={helperTextWithHtml} />
+        <HelperText
+          className="bx--label"
+          source={helperText}
+          withHtml={helperTextWithHtml}
+        />
       ) : null}
     </FormItem>
   );

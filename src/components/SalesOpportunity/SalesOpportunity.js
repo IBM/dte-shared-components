@@ -36,10 +36,10 @@ const SalesOpportunity = ({
   // eslint-disable-next-line no-unused-vars
   ...rest
 }) => {
-  const [purpose, setPurpose] = useState(values.purpose);
-  const [customer, setCustomer] = useState(values.customer);
-  const [description, setDescription] = useState(values.description);
-  const [opportunity, setOpportunity] = useState(values.opportunity || []);
+  const [purpose, setPurpose] = useState(values?.purpose);
+  const [customer, setCustomer] = useState(values?.customer);
+  const [description, setDescription] = useState(values?.description);
+  const [opportunity, setOpportunity] = useState(values?.opportunity || []);
   const [fields, setFields] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [required, setRequired] = useState({});
@@ -113,10 +113,12 @@ const SalesOpportunity = ({
   }, [policy, purpose, customer, opportunity, description]);
 
   useEffect(() => {
-    if (values.purpose !== purpose) setPurpose(values.purpose);
-    if (values.customer !== customer) setCustomer(values.customer);
-    if (values.opportunity !== opportunity) setOpportunity(values.opportunity);
-    if (values.description !== description) setDescription(values.description);
+    if (values?.purpose !== purpose) setPurpose(values?.purpose);
+    if (values?.customer !== customer) setCustomer(values?.customer);
+    if (values?.opportunity !== opportunity)
+      setOpportunity(values?.opportunity);
+    if (values?.description !== description)
+      setDescription(values?.description);
   }, [values]);
 
   const handleChange = (n, v) => {
@@ -141,8 +143,14 @@ const SalesOpportunity = ({
 
   return (
     <>
+      <p>TBH</p>
+    </>
+  );
+  return (
+    <>
       <Row>
-        <Column lg={16} md={8} sm={4}>
+        <Column>tbd</Column>
+        {/* <Column lg={16} md={8} sm={4}>
           {labelText ? <FormLabel>{labelText}</FormLabel> : null}
           {single ? (
             <div className="bx--form-item bx--text-input-wrapper">
@@ -176,8 +184,8 @@ const SalesOpportunity = ({
               value={purpose}
             />
           )}
-        </Column>
-        {fields && fields.includes("customer") ? (
+        </Column> */}
+        {/* {fields && fields.includes("customer") ? (
           <Column lg={8} md={8} sm={4}>
             <TagInput
               id="customer"
@@ -197,8 +205,8 @@ const SalesOpportunity = ({
               validator={(v) => v && v.toString().trim() !== ""}
             />
           </Column>
-        ) : null}
-        {fields && fields.includes("opportunity") ? (
+        ) : null} */}
+        {/* {fields && fields.includes("opportunity") ? (
           <Column lg={8} md={8} sm={4}>
             <TagInput
               id="opportunity"
@@ -218,9 +226,9 @@ const SalesOpportunity = ({
               validator={(v) => v && v.toString().trim() !== ""}
             />
           </Column>
-        ) : null}
+        ) : null} */}
 
-        {fields &&
+        {/* {fields &&
         (fields.includes("customer") || fields.includes("opportunity")) ? (
           <Column lg={16} md={8} sm={4}>
             <Tooltip
@@ -253,129 +261,129 @@ const SalesOpportunity = ({
               onFocus={handleFocus}
             />
           </Column>
-        ) : null}
+        ) : null} */}
       </Row>
     </>
   );
 };
 
-SalesOpportunity.defaultProps = {
-  items: [
-    {
-      id: "customer-demo",
-      text: "Customer Demo",
-      fields: ["customer", "opportunity"],
-      required: ["customer", "opportunity"],
-      policy: {
-        reserve: { "*": TWOWEEK },
-        extend: { "*": 0, opportunity: TWOWEEK },
-      },
-      condition: "or",
-    },
-    {
-      id: "customer-self-service",
-      text: "Customer Self-Service",
-      fields: ["customer", "opportunity"],
-      required: ["customer", "opportunity"],
-      policy: {
-        reserve: { "*": TWOWEEK },
-        extend: { "*": 0, opportunity: TWOWEEK },
-      },
-      condition: "or",
-    },
-    {
-      id: "development",
-      text: "Development",
-      fields: ["description"],
-      required: ["description"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
-    },
-    {
-      id: "other",
-      text: "Other",
-      fields: ["description"],
-      required: ["description"],
-      policy: { reserve: { "*": FOURHOURS }, extend: { "*": 0 } },
-    },
-    {
-      id: "practice-self-education",
-      text: "Practice / Self-Education",
-      fields: ["description"],
-      required: ["description"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
-    },
-    {
-      id: "proof-of-concept",
-      text: "Proof-of-Concept",
-      fields: ["customer", "opportunity"],
-      required: ["customer", "opportunity"],
-      policy: {
-        reserve: { "*": TWOWEEK },
-        extend: { "*": 0, opportunity: TWOWEEK },
-      },
-      condition: "or",
-    },
-    {
-      id: "proof-of-technology",
-      text: "Proof-of-Technology",
-      fields: ["customer", "opportunity"],
-      required: ["customer", "opportunity"],
-      policy: {
-        reserve: { "*": TWOWEEK },
-        extend: { "*": 0, opportunity: TWOWEEK },
-      },
-      condition: "or",
-    },
-    {
-      id: "service-support",
-      text: "Service / Support",
-      fields: ["description"],
-      required: ["description"],
-      policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
-    },
-    {
-      id: "test",
-      text: "Test",
-      fields: ["description"],
-      required: ["description"],
-      policy: { reserve: { "*": FOURHOURS }, extend: { "*": 0 } },
-    },
-    {
-      id: "workshop",
-      text: "Workshop",
-      fields: ["customer", "opportunity", "description"],
-      required: ["customer", "opportunity"],
-      policy: {
-        reserve: { "*": TWOWEEK },
-        extend: { "*": 0, opportunity: TWOWEEK },
-      },
-      condition: "or",
-    },
-  ],
-  helperText: "",
-  labelText: "",
-  setFieldValue: () => {},
-  setFieldError: () => {},
-  setFieldTouched: () => {},
-};
+// SalesOpportunity.defaultProps = {
+//   items: [
+//     {
+//       id: "customer-demo",
+//       text: "Customer Demo",
+//       fields: ["customer", "opportunity"],
+//       required: ["customer", "opportunity"],
+//       policy: {
+//         reserve: { "*": TWOWEEK },
+//         extend: { "*": 0, opportunity: TWOWEEK },
+//       },
+//       condition: "or",
+//     },
+//     {
+//       id: "customer-self-service",
+//       text: "Customer Self-Service",
+//       fields: ["customer", "opportunity"],
+//       required: ["customer", "opportunity"],
+//       policy: {
+//         reserve: { "*": TWOWEEK },
+//         extend: { "*": 0, opportunity: TWOWEEK },
+//       },
+//       condition: "or",
+//     },
+//     {
+//       id: "development",
+//       text: "Development",
+//       fields: ["description"],
+//       required: ["description"],
+//       policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
+//     },
+//     {
+//       id: "other",
+//       text: "Other",
+//       fields: ["description"],
+//       required: ["description"],
+//       policy: { reserve: { "*": FOURHOURS }, extend: { "*": 0 } },
+//     },
+//     {
+//       id: "practice-self-education",
+//       text: "Practice / Self-Education",
+//       fields: ["description"],
+//       required: ["description"],
+//       policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
+//     },
+//     {
+//       id: "proof-of-concept",
+//       text: "Proof-of-Concept",
+//       fields: ["customer", "opportunity"],
+//       required: ["customer", "opportunity"],
+//       policy: {
+//         reserve: { "*": TWOWEEK },
+//         extend: { "*": 0, opportunity: TWOWEEK },
+//       },
+//       condition: "or",
+//     },
+//     {
+//       id: "proof-of-technology",
+//       text: "Proof-of-Technology",
+//       fields: ["customer", "opportunity"],
+//       required: ["customer", "opportunity"],
+//       policy: {
+//         reserve: { "*": TWOWEEK },
+//         extend: { "*": 0, opportunity: TWOWEEK },
+//       },
+//       condition: "or",
+//     },
+//     {
+//       id: "service-support",
+//       text: "Service / Support",
+//       fields: ["description"],
+//       required: ["description"],
+//       policy: { reserve: { "*": TWOWEEK }, extend: { "*": 0 } },
+//     },
+//     {
+//       id: "test",
+//       text: "Test",
+//       fields: ["description"],
+//       required: ["description"],
+//       policy: { reserve: { "*": FOURHOURS }, extend: { "*": 0 } },
+//     },
+//     {
+//       id: "workshop",
+//       text: "Workshop",
+//       fields: ["customer", "opportunity", "description"],
+//       required: ["customer", "opportunity"],
+//       policy: {
+//         reserve: { "*": TWOWEEK },
+//         extend: { "*": 0, opportunity: TWOWEEK },
+//       },
+//       condition: "or",
+//     },
+//   ],
+//   helperText: "",
+//   labelText: "",
+//   setFieldValue: () => {},
+//   setFieldError: () => {},
+//   setFieldTouched: () => {},
+// };
 
 SalesOpportunity.propTypes = {
   errors: PropTypes.any,
   setFieldValue: PropTypes.func,
   setFieldError: PropTypes.func,
   setFieldTouched: PropTypes.func,
-  touched: PropTypes.bool,
+  touched: PropTypes.any,
   values: PropTypes.any,
   helperText: PropTypes.string,
   id: PropTypes.string,
-  invalid: PropTypes.bool,
-  invalidText: PropTypes.string,
+  // invalid: PropTypes.bool,
+  // invalidText: PropTypes.string,
   items: PropTypes.any,
-  label: PropTypes.string,
-  labelText: PropTypes.string,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.any,
+  // label: PropTypes.string,
+  // labelText: PropTypes.string,
+  // name: PropTypes.string,
+  // placeholder: PropTypes.string,
+  // value: PropTypes.any,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   onChange: PropTypes.func,

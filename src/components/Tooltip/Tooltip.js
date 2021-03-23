@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from "classnames";
 import styled from "styled-components";
-//import Aux from "../Aux/Aux";
 
-// import { Tooltip as CarbonTooltip } from "carbon-components-react";
-import { Markdown } from "../Markdown/Markdown";
+import { Markdown } from "../../index";
+import { ciEquals } from "../../methods";
 
 const prefix = "bx";
 
@@ -40,6 +39,7 @@ const StyledToolTipContent = styled.div`
   width: auto;
   min-width: 15rem;
   max-width: 80rem;
+  z-index: 1001;
   & .bx--tooltip__caret {
     margin-left: 1rem;
   }
@@ -68,13 +68,13 @@ const Tooltip = ({
   });
   const triggerClassName = cx({
     [`${prefix}--tooltip__trigger`]: !markdown,
-    [`${prefix}--tooltip--align-start`]: align === "start",
-    [`${prefix}--tooltip--align-end`]: align === "end",
-    [`${prefix}--tooltip--align-center`]: align === "center",
-    [`${prefix}--tooltip--left`]: direction === "left",
-    [`${prefix}--tooltip--right`]: direction === "right",
-    [`${prefix}--tooltip--icon__bottom`]: direction === "bottom",
-    [`${prefix}--tooltip--icon__top`]: direction === "top",
+    [`${prefix}--tooltip--align-start`]: ciEquals(align, "start"),
+    [`${prefix}--tooltip--align-end`]: ciEquals(align, "end"),
+    [`${prefix}--tooltip--align-center`]: ciEquals(align, "center"),
+    [`${prefix}--tooltip--left`]: ciEquals(direction, "left"),
+    [`${prefix}--tooltip--right`]: ciEquals(direction, "right"),
+    [`${prefix}--tooltip--icon__bottom`]: ciEquals(direction, "bottom"),
+    [`${prefix}--tooltip--icon__top`]: ciEquals(direction, "top"),
   });
   // if (markdown) {
   //   return (

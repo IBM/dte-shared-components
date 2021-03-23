@@ -4,13 +4,14 @@ import clsx from "clsx";
 import { navigate } from "react-big-calendar/lib/utils/constants";
 
 const CalendarMinToolbar = ({
-  localizer: { messages },
+  localizer: { messages = {} } = {},
   label,
   view,
   views,
   onView,
   onNavigate,
 }) => {
+  console.log("calender ---> ", navigate);
   const handleNav = (v) => {
     if (onNavigate && typeof onNavigate === "function") onNavigate(v);
   };
@@ -26,7 +27,8 @@ const CalendarMinToolbar = ({
           type="button"
           key={name}
           className={clsx({ "rbc-active": view === name })}
-          onClick={handleView(name)}>
+          onClick={handleView(name)}
+        >
           {messages[name]}
         </button>
       ));
@@ -37,11 +39,14 @@ const CalendarMinToolbar = ({
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
-          <button type="button" onClick={handleNav(navigate.PREVIOUS)}>
-            {messages.previous}
+          <button
+            type="button"
+            onClick={handleNav(navigate && navigate.PREVIOUS)}
+          >
+            {messages?.previous}
           </button>
-          <button type="button" onClick={handleNav(navigate.NEXT)}>
-            {messages.next}
+          <button type="button" onClick={handleNav(navigate && navigate.NEXT)}>
+            {messages?.next}
           </button>
         </span>
         <span className="rbc-toolbar-label">{label}</span>
@@ -51,14 +56,17 @@ const CalendarMinToolbar = ({
   return (
     <div className="rbc-toolbar">
       <span className="rbc-btn-group">
-        <button type="button" onClick={handleNav(navigate.PREVIOUS)}>
-          {messages.previous}
+        <button
+          type="button"
+          onClick={handleNav(navigate && navigate.PREVIOUS)}
+        >
+          {messages?.previous}
         </button>
       </span>
       <span className="rbc-toolbar-label">{label}</span>
       <span className="rbc-btn-group">
-        <button type="button" onClick={handleNav(navigate.NEXT)}>
-          {messages.next}
+        <button type="button" onClick={handleNav(navigate && navigate.NEXT)}>
+          {messages?.next}
         </button>
       </span>
     </div>

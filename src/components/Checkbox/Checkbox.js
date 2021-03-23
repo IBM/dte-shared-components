@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Checkbox as CarbonCheckbox } from "carbon-components-react";
-import { Tooltip } from "../Tooltip/Tooltip";
+import { Tooltip } from "../../index";
 
 const Checkbox = ({
   id,
@@ -38,6 +38,8 @@ const Checkbox = ({
   ) : (
     labelText
   );
+  //      labelText={label || ""}
+  // console.log("here is console checkbox: ", rest);
 
   return (
     <CarbonCheckbox

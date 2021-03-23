@@ -41,7 +41,8 @@ const ConfirmModal = ({
       primaryButtonText={primaryButtonText}
       secondaryButtonText={secondaryButtonText}
       hasForm={hasForm}
-      size="sm">
+      size="sm"
+    >
       <h1>{message}</h1>
       {children || null}
     </Modal>

@@ -51,8 +51,8 @@ const Button = styled.div`
   }
 `;
 
-const ScrollToTopButton = ({ labelText, ...rest }) => {
-  const [show, setShow] = useState(false);
+const ScrollToTopButton = ({ labelText, force, ...rest }) => {
+  const [show, setShow] = useState(force);
   const listener = () => {
     if (window.pageYOffset > 250) setShow(true);
     else setShow(false);
@@ -65,8 +65,8 @@ const ScrollToTopButton = ({ labelText, ...rest }) => {
       window.removeEventListener("scroll", debounceWrapper);
     };
   }, []);
-
-  return show ? (
+  // console.log("this hsoew value ::: ", show, force);
+  return show || force ? (
     <Button
       onClick={() => {
         window.scrollTo({
@@ -74,7 +74,8 @@ const ScrollToTopButton = ({ labelText, ...rest }) => {
           behavior: "smooth",
         });
       }}
-      {...rest}>
+      {...rest}
+    >
       <UpToTop32 />
       <span className="label">{labelText}</span>
     </Button>
@@ -84,10 +85,12 @@ const ScrollToTopButton = ({ labelText, ...rest }) => {
 };
 
 ScrollToTopButton.defaultProps = {
+  force: false,
   labelText: "Up to top",
 };
 
 ScrollToTopButton.propTypes = {
+  force: PropTypes.bool,
   labelText: PropTypes.string,
 };
 

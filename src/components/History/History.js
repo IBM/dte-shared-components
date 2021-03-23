@@ -14,7 +14,8 @@ const withHistory = (Component) => (props = {}) => {
 
   useEffect(() => {
     const previous = previousPage();
-    if (!history || history.length === 0 || previous !== asPath) setHistory([...history, asPath]);
+    if (!history || history.length === 0 || previous !== asPath)
+      setHistory([...history, asPath]);
   }, [asPath]);
 
   return <Component {...props} history={history} />;

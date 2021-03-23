@@ -1,7 +1,7 @@
 import React from "react";
 
 import { TextInput as CarbonTextInput } from "carbon-components-react";
-import { HelperText } from "../HelperText/HelperText";
+import { HelperText } from "../../index";
 
 const TextInput = ({ helperText, ...rest }) => {
   return (

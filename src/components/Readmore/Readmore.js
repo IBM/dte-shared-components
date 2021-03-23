@@ -4,8 +4,7 @@ import { truncate } from "lodash";
 import styled from "styled-components";
 
 import { ChevronUp32, ChevronDown32 } from "@carbon/icons-react";
-import { Button } from "../Button/Button";
-import { Markdown } from "../Markdown/Markdown";
+import { Button, Markdown } from "../../index";
 
 const Styled = styled.span`
   & .readmore {

@@ -14,8 +14,7 @@ import { debounce, merge } from "lodash";
 
 import { FormItem, FormLabel, TextArea } from "carbon-components-react";
 
-import { HelperText } from "../HelperText/HelperText";
-import { InvalidText } from "../InvalidText/InvalidText";
+import { HelperText, InvalidText } from "../../index";
 
 import { markdownToHtml, htmlToMarkdown } from "../../methods";
 

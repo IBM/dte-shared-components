@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { FormItem, FormLabel, SkeletonText } from "carbon-components-react";
 
 import { MultiDropdownList as ReactiveSearchMultiDropdownList } from "@appbaseio/reactivesearch";
-import { HelperText } from "components";
+import { HelperText } from "../../index";
 
 const StyledFormItem = styled(FormItem)`
   width: 100%;
@@ -38,16 +38,27 @@ const StyledFormItem = styled(FormItem)`
   }
 `;
 
-const MultiDropdownList = ({ showCheckbox, labelText, helperText, title, wrap, ...rest }) => {
+const MultiDropdownList = ({
+  showCheckbox,
+  labelText,
+  helperText,
+  title,
+  wrap,
+  ...rest
+}) => {
   // create a render option to wrap the list in checkbox
   // if (showCheckbox) {}
   const dropdown = <ReactiveSearchMultiDropdownList {...rest} />;
   if (wrap) {
     return (
       <StyledFormItem>
-        {title || labelText ? <FormLabel>{title || labelText}</FormLabel> : null}
+        {title || labelText ? (
+          <FormLabel>{title || labelText}</FormLabel>
+        ) : null}
         {dropdown}
-        {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+        {helperText ? (
+          <HelperText className="bx--form__helper-text" source={helperText} />
+        ) : null}
       </StyledFormItem>
     );
   }

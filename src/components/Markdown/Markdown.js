@@ -9,9 +9,6 @@ import styled from "styled-components";
 
 import { CodeSnippet } from "carbon-components-react";
 
-// import { trackCTA } from "lib/analytics";
-// import { copyToClipboard } from "lib/utils";
-
 let Styled = styled.span`
   & ol,
   & ul {

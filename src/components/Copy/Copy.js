@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { FormItem, CopyButton } from "carbon-components-react";
 import { HelperText, Label } from "../../index";
+import { copyToClipboard } from "../../methods";
 
 const StyledDiv = styled.div`
   width: 100%;

@@ -16,5 +16,4 @@ Default.args = {
   cta: {
     href: "ibm.com",
   },
-  //   data: {},
 };

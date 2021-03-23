@@ -1,37 +1,40 @@
 import IconButton from "./IconButton";
+import { Bee32 } from "@carbon/icons-react";
 
 export default {
   title: "DTE/IconButton",
   component: IconButton,
 };
 
-const Template = (args) => <IconButton {...args} />;
+//ALL ARE DEMO Cases with Bee32 icon.
+const Template = (args) => <IconButton renderIcon={Bee32} {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: "Default",
+  children: "<AnyText & ->",
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
+  iconDescription: "primary",
   kind: "primary",
-  children: "Primary IconButton",
+  children: "IBM",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   kind: "secondary",
-  children: "Secondary IconButton",
+  children: "IBM",
 };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
   kind: "tertiary",
-  children: "Tertiary IconButton",
+  children: "IBM",
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
   kind: "danger",
-  children: "Danger IconButton",
+  children: "IBM",
 };

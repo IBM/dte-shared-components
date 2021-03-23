@@ -1,5 +1,5 @@
 import { Checkbox } from "carbon-components-react";
-import { HelperText } from "../HelperText/HelperText";
+import { HelperText } from "../../index";
 
 const ConsentInput = ({ children, labelText, markdown, ...rest }) => {
   return (

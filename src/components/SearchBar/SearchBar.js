@@ -5,7 +5,7 @@ import { throttle } from "lodash";
 
 import { Grid, Row, Column } from "carbon-components-react";
 import { Bookmark32, Favorite32 } from "@carbon/icons-react";
-import { DataSearch, IconButton, ReactiveBase } from "components";
+import { DataSearch, IconButton, ReactiveBase } from "../../index";
 
 import initReactivesearch from "@appbaseio/reactivesearch/lib/server";
 

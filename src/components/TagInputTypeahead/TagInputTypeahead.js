@@ -4,7 +4,12 @@ import { FormItem, FormLabel, Tag } from "carbon-components-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
-import { HelperText, InvalidText, TextInput, TypeaheadInput } from "components";
+import {
+  HelperText,
+  InvalidText,
+  TextInput,
+  TypeaheadInput,
+} from "../../index";
 
 const idSafe = (v) => {
   return v
@@ -279,7 +284,9 @@ const TagInputTypeahead = ({
     // making copy to avoid item normalization before bubbling up selectionSuggestion event
     wrappedSuggestionCopy = { ...wrappedSuggestion };
     addTag(wrappedSuggestion);
-    parentSelectSuggestionHandler ? parentSelectSuggestionHandler(wrappedSuggestionCopy) : "";
+    parentSelectSuggestionHandler
+      ? parentSelectSuggestionHandler(wrappedSuggestionCopy)
+      : "";
   };
 
   const batchSuggestionHandler = (values) => {
@@ -309,40 +316,57 @@ const TagInputTypeahead = ({
   };
 
   if (disabled)
-    return <TextInput labelText={labelText} helperText={helperText} value={value} disabled />;
+    return (
+      <TextInput
+        labelText={labelText}
+        helperText={helperText}
+        value={value}
+        disabled
+      />
+    );
 
   return (
     <FormItem className={`${className}`} {...rest}>
       {labelText ? <FormLabel>{labelText}</FormLabel> : null}
       <Styled>
-        <div className={`${namespace}${invalid ? " invalid" : ""}${focus ? " focus" : ""}`}>
+        <div
+          className={`${namespace}${invalid ? " invalid" : ""}${
+            focus ? " focus" : ""
+          }`}
+        >
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided) => (
                 <ul
                   className={`${namespace}__tags`}
                   ref={provided.innerRef}
-                  {...provided.droppableProps}>
+                  {...provided.droppableProps}
+                >
                   {tags &&
                     tags.map((tag, i) => (
                       <Draggable
                         key={`${idSafe(tag)}-${i}`}
                         draggableId={`${idSafe(tag)}-${i}`}
-                        index={i}>
+                        index={i}
+                      >
                         {(provided) => (
                           <li
                             key={`${namespace}-${i}`}
                             ref={provided.innerRef}
                             {...provided.draggableProps}
-                            {...provided.dragHandleProps}>
+                            {...provided.dragHandleProps}
+                          >
                             <Tag
                               filter
                               type={type}
                               onClose={(e) => {
                                 e.preventDefault();
                                 removeTag(i);
-                              }}>
-                              {flatSuggestion ? tag : tag[suggestionViewProperty] || tag}
+                              }}
+                            >
+                              {flatSuggestion
+                                ? tag
+                                : tag[suggestionViewProperty] || tag}
                             </Tag>
                           </li>
                         )}
@@ -379,7 +403,9 @@ const TagInputTypeahead = ({
           </DragDropContext>
         </div>
       </Styled>
-      {helperText ? <HelperText className="bx--form__helper-text" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--form__helper-text" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

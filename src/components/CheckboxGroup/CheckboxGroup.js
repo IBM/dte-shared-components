@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import {
   FormItem,
@@ -6,9 +7,9 @@ import {
   TooltipDefinition,
 } from "carbon-components-react";
 
-import { Checkbox } from "../Checkbox/Checkbox";
-import { HelperText } from "../HelperText/HelperText";
-import { InvalidText } from "../InvalidText/InvalidText";
+import { Checkbox, HelperText, InvalidText } from "../../index";
+
+import { isEmpty, isFunction } from "../../methods";
 
 let Styled = styled.div`
   & .checkboxgroup__wrapper {
@@ -65,6 +66,7 @@ let Styled = styled.div`
   }
 `;
 
+/* eslint-disable */
 const CheckboxGroup = ({
   id,
   name,
@@ -87,14 +89,10 @@ const CheckboxGroup = ({
 }) => {
   const [checked, setChecked] = useState(value);
   const [items, setItems] = useState(values);
-
-  // useEffect(() => {
-  //   if (items !== values) setItems(values);
-  // }, [values]);
+  /* eslint-enable */
 
   const handleCheck = (n, v) => {
-    // console.log("handleCheck", n, v);
-    if (onChange && typeof onChange === "function") onChange(n, v);
+    if (isFunction(onChange)) onChange(n, v);
   };
 
   const isChecked = (v) => {
@@ -113,7 +111,7 @@ const CheckboxGroup = ({
     let val = ((e && e.target && e.target.value) || "")
       .toString()
       .toLowerCase();
-    if (!val || val === "") setItems(values);
+    if (isEmpty(val)) setItems(values);
     let temp =
       (values &&
         values.filter((o) => {
@@ -149,7 +147,6 @@ const CheckboxGroup = ({
       </FormItem>
     );
 
-  // if (values && values.length > 0) {
   return values && values.length > 0 ? (
     <FormItem {...rest}>
       {labelText ? (
@@ -184,10 +181,10 @@ const CheckboxGroup = ({
             // return <Checkbox id={u} name={name} value={l} key={u} {...v} />;
             return (
               <Checkbox
+                key={i}
                 id={u}
                 name={name}
                 value={l}
-                key={u}
                 onChange={handleCheck}
                 {...v}
               />
@@ -202,16 +199,10 @@ const CheckboxGroup = ({
         {invalidText}
       </InvalidText>
     </FormItem>
-  ) : (
-    ""
-  );
-  // } else {
-  //   return "";
-  // }
+  ) : null;
 };
 
 CheckboxGroup.defaultProps = {
-  helperText: "",
   id: "checkboxgroup",
   name: "checkboxgroup",
   namespace: "",
@@ -224,6 +215,26 @@ CheckboxGroup.defaultProps = {
   filterable: false,
   filterableClassName: "bx--text-input bx--text__input",
   filterablePlaceholder: "Filter list",
+};
+
+CheckboxGroup.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  namespace: PropTypes.string,
+  invalid: PropTypes.bool,
+  labelText: PropTypes.string,
+  invalidText: PropTypes.string,
+  helperText: PropTypes.string,
+  disabled: PropTypes.bool,
+  layout: PropTypes.any,
+  value: PropTypes.any,
+  values: PropTypes.any,
+  onChange: PropTypes.func,
+  scrollable: PropTypes.bool,
+  filterable: PropTypes.bool,
+  filterableClassName: PropTypes.string,
+  filterablePlaceholder: PropTypes.string,
+  tooltipMessage: PropTypes.string,
 };
 
 export default CheckboxGroup;

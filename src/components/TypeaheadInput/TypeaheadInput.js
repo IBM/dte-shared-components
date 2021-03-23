@@ -6,7 +6,7 @@ import { debounce } from "lodash";
 import { AddAlt20 } from "@carbon/icons-react";
 import styled from "styled-components";
 
-import { HelperText, InvalidText, IconButton } from "components";
+import { HelperText, InvalidText, IconButton } from "../../index";
 
 const Styled = styled.div`
   width: 100%;

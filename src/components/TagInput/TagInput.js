@@ -10,8 +10,7 @@ import {
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 
-import { HelperText } from "../HelperText/HelperText";
-import { InvalidText } from "../InvalidText/InvalidText";
+import { HelperText, InvalidText } from "../../index";
 
 import { safeIdName } from "../../methods";
 
@@ -242,7 +241,6 @@ const TagInput = ({
     );
 
   const errorId = `${name}-error-msg`;
-  //--TIM line 286
   return (
     <FormItem id={id} {...rest}>
       {labelText ? (

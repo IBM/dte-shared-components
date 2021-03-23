@@ -1,5 +1,5 @@
 import React from "react";
-import Aux from "../../hoc/Aux";
+import { Aux } from "../../index";
 
 import altlangs from "./altlang.json";
 

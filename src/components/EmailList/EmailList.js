@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { isEmpty } from "lodash";
 import styled from "styled-components";
 
-import { Button } from "../Button/Button";
 import {
+  Button,
   SkeletonText as CarbonSkeletonText,
   Tooltip,
 } from "carbon-components-react";
+
 import { Email20, LogoSlack20 } from "@carbon/icons-react";
 
-import { Mailto } from "../Mailto/Mailto";
+import { Mailto } from "../../index";
+
+import { ciEquals, isEmpty, isEmail, isString } from "../../methods";
 
 const intersperse = (arr, sep = ", ") => {
   if (arr.length === 0) return [];
   return arr.slice(1).reduce(
-    (xs, x) => {
+    function (xs, x) {
       return xs.concat([sep, x]);
     },
     [arr[0]]
@@ -72,7 +74,7 @@ const TooltipUser = ({ data, children, key, ...rest }) => {
       >
         <TooltipBody>
           <img
-            src={`https://w3-services1.w3-969.ibm.com/myw3/unified-profile-photo/v1/image/${data.preferredIdentity}`}
+            src={`/api/photo/${data.preferredIdentity}`}
             alt="user profile"
           />
           <h4>{data.nameFull || data.nameDisplay}</h4>
@@ -109,11 +111,11 @@ const EmailList = ({
   unique,
   obfuscate,
   format,
-  isEmail,
+  itemToElement,
   ...rest
 }) => {
   if (!list || isEmpty(list)) return null;
-  if (typeof list === "string") {
+  if (isString(list)) {
     if (list.includes(delimiter.trim())) {
       list = list
         .split(delimiter.trim())
@@ -123,15 +125,17 @@ const EmailList = ({
   }
   let emails = unique ? Array.from(new Set([...list])) : [...list];
   if (!emails || emails.length === 0) return null;
-  if (format === "markdown")
+  if (ciEquals(format, "markdown"))
     return emails.map((e) => `- ${e.name || e}`).join("\n");
-  else if (format === "text")
+  else if (ciEquals(format, "text"))
     return emails.map((e) => `${e.name || e}`).join(delimiter);
-  else if (format === "short") {
+  else if (ciEquals(format, "short")) {
     return intersperse(
       emails.map((e, i) => {
         if (!isEmail((e && e.email) || e)) return (e && e.name) || e;
-        return (
+        return itemToElement && isIbmerEmail((e && e.email) || e) ? (
+          itemToElement((e && e.email) || e, obfuscate, rest)
+        ) : (
           <Mailto
             key={`email-${i}`}
             email={(e && e.name) || e}
@@ -180,6 +184,7 @@ EmailList.propTypes = {
   unique: PropTypes.bool,
   obfuscate: PropTypes.bool,
   format: PropTypes.string,
+  itemToElement: PropTypes.func,
 };
 
 export default EmailList;

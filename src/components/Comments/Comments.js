@@ -5,20 +5,17 @@ import styled from "styled-components";
 import { Column, Grid, Row } from "carbon-components-react";
 import { AddComment32, UserAvatar32, TrashCan20 } from "@carbon/icons-react";
 
-import { Button } from "../Button/Button";
-import { ButtonSet } from "../ButtonSet/ButtonSet";
-import { Form } from "../Form/Form";
-import { IconButton } from "../IconButton/IconButton";
-import { EmailList } from "../EmailList/EmailList";
-import { Readmore } from "../Readmore/Readmore";
-import { Wysiwyg } from "../Wysiwyg/Wysiwyg";
-
-//import { toLocaleDateString } from "../../lib/utils";
+import {
+  Button,
+  ButtonSet,
+  Form,
+  IconButton,
+  EmailList,
+  Readmore,
+  Wysiwyg,
+} from "../../index";
 
 import { toBoolean, toLocaleDateString } from "../../methods";
-
-// // Since it is outside, we need to move that specific library
-// const PUBLIC = toBoolean(process.env.PUBLIC || false);
 
 const Styled = styled.div`
   & .bx--grid {

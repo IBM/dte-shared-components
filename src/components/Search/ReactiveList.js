@@ -1,6 +1,6 @@
 import { ReactiveList as ReactiveSearchReactiveList } from "@appbaseio/reactivesearch";
 
-import { LoadingList, NoResults } from "components";
+import { LoadingList, NoResults } from "../../index";
 
 const ReactiveList = (props) => {
   return <ReactiveSearchReactiveList {...props} />;

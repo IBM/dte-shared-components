@@ -4,8 +4,8 @@ import { isEmpty } from "lodash";
 import { Tag } from "carbon-components-react";
 import { CloseOutline32 } from "@carbon/icons-react";
 
-import { IconButton } from "components";
-import { toBoolean } from "../../lib/utils";
+import { IconButton } from "../../index";
+import { toBoolean } from "../../methods";
 
 const SelectedFilters = (props) => {
   return (

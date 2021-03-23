@@ -10,6 +10,9 @@ const Styled = styled.div`
     font-weight: 300;
     margin-right: 1rem;
   }
+  & > .black {
+    color: #000000;
+  }
   & > .orange {
     color: #e38f56;
   }
@@ -28,6 +31,12 @@ const Styled = styled.div`
 
 const Flag = ({ label, color, ...rest }) => {
   const flagClass = classNames(color);
+  let deafult = (
+    <span className="black">
+      <Badge16></Badge16>
+      <span className="flagText">Default</span>
+    </span>
+  );
   let governed = (
     <span className="orange">
       <Rule16></Rule16>
@@ -48,6 +57,7 @@ const Flag = ({ label, color, ...rest }) => {
   );
   return (
     <Styled className={flagClass} {...rest}>
+      {label.includes("Default") && deafult}
       {label.includes("Featured") && featured}
       {label.includes("Governed") && governed}
       {label.includes("Covid") && covid}

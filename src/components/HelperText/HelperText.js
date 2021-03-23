@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Markdown } from "../Markdown/Markdown";
+import { Markdown } from "../../index";
 
 const HelperText = ({ withHtml, ...rest }) => {
   return withHtml ? (

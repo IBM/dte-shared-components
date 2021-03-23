@@ -86,7 +86,7 @@ const Styled = styled.span`
   }
 `;
 
-import { isHex } from "../../lib/utils";
+import { isHex } from "../../methods";
 
 const Leadspace = ({
   actions,

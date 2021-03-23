@@ -7,7 +7,7 @@ import {
   RadioButtonGroup as CarbonRadioButtonGroup,
 } from "carbon-components-react";
 
-import { HelperText, InvalidText } from "components";
+import { HelperText, InvalidText } from "../../index";
 
 const RadioButtonGroup = ({
   // eslint-disable-next-line  no-unused-vars
@@ -56,7 +56,9 @@ const RadioButtonGroup = ({
   };
 
   const filter = (e) => {
-    let val = ((e && e.target && e.target.value) || "").toString().toLowerCase();
+    let val = ((e && e.target && e.target.value) || "")
+      .toString()
+      .toLowerCase();
     if (!val || val === "") setItems(values);
     let temp =
       (values &&
@@ -75,7 +77,9 @@ const RadioButtonGroup = ({
     return (
       <FormItem {...rest}>
         {labelText ? (
-          <FormLabel className="bx--label bx--label--disabled">{labelText}</FormLabel>
+          <FormLabel className="bx--label bx--label--disabled">
+            {labelText}
+          </FormLabel>
         ) : null}
         {items.map((v, i) => {
           let u = `${namespace}${name}-${i}`;
@@ -86,7 +90,10 @@ const RadioButtonGroup = ({
           return <RadioButton id={u} labelText={t} value={l} key={u} {...v} />;
         })}
         {helperText ? (
-          <HelperText className="bx--label bx--label-disabled" source={helperText} />
+          <HelperText
+            className="bx--label bx--label-disabled"
+            source={helperText}
+          />
         ) : null}
       </FormItem>
     );
@@ -104,8 +111,11 @@ const RadioButtonGroup = ({
       ) : null}
       <CarbonRadioButtonGroup
         defaultSelected={value}
-        className={`${scrollable ? "scrollable" : ""}${invalid ? " invalid" : ""}`}
-        {...rest}>
+        className={`${scrollable ? "scrollable" : ""}${
+          invalid ? " invalid" : ""
+        }`}
+        {...rest}
+      >
         {items.map((v, i) => {
           let u = `${namespace}${name}-${i}`;
           let l = v.id || v.value || v.labelText || v;
@@ -113,7 +123,9 @@ const RadioButtonGroup = ({
           return <RadioButton id={u} labelText={t} value={l} key={u} />;
         })}
       </CarbonRadioButtonGroup>
-      {helperText ? <HelperText className="bx--label" source={helperText} /> : null}
+      {helperText ? (
+        <HelperText className="bx--label" source={helperText} />
+      ) : null}
       <InvalidText name={name} invalid={invalid}>
         {invalidText}
       </InvalidText>

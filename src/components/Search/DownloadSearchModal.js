@@ -8,13 +8,11 @@ import {
   FormGroup,
   TextInputSkeleton,
 } from "carbon-components-react";
-import { Csv32, Json32 } from "@carbon/icons-react";
 
-import { ButtonSet, IconButton } from "components";
+import { Csv32, Json32 } from "@carbon/icons-react";
+import { ButtonSet, IconButton } from "../../index";
 
 import { saveAs } from "file-saver";
-
-//import { json2csv } from "../../lib/utils";
 import { json2csv } from "../../methods";
 
 const Row = styled.div`

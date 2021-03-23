@@ -104,16 +104,21 @@ const EditPageButton = (props) => {
       };
     }
   }, []);
-  return offset ? <OffsetButton {...props} /> : <Button {...props} />;
+  return offset ? (
+    <OffsetButton {...props}>
+      {" "}
+      <Edit20 />
+      <span className="label">Edit this page</span>
+    </OffsetButton>
+  ) : (
+    <Button {...props}>
+      <Edit20 />
+      <span className="label">Edit this page</span>
+    </Button>
+  );
 };
 
 EditPageButton.defaultProps = {
-  children: (
-    <>
-      <Edit20 />
-      <span className="label">Edit this page</span>
-    </>
-  ),
   onClick: () => {},
 };
 

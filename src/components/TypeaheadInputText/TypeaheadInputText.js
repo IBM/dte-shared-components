@@ -6,7 +6,7 @@ import { throttle } from "lodash";
 
 import { FormItem, FormLabel, InlineLoading } from "carbon-components-react";
 
-import { HelperText, InvalidText } from "components";
+import { HelperText, InvalidText } from "../../index";
 
 const Row = styled.div`
   width: 100%;

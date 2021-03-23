@@ -1,5 +1,5 @@
-//Methods that can't be imported as a prop and don't have any sensitive information
 import { Remarkable } from "remarkable";
+
 const moment = require("moment");
 const TurndownService = require("turndown").default;
 
@@ -10,6 +10,30 @@ const DATEFORMATS = [
   "MM/DD/YYYY hh:mm:ss A Z",
   "YYYY-MM-DD HH:mm:ss",
 ];
+
+export const ciEquals = (a, b, sensitivity = "base") => {
+  return typeof a === "string" && typeof b === "string"
+    ? a.localeCompare(b, undefined, { sensitivity: sensitivity }) === 0
+    : a === b;
+};
+
+export const copyToClipboard = (v, el) => {
+  try {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(v);
+    } else if (typeof window !== "undefined" && window.clipboardData) {
+      window.clipboardData.setData("text", v);
+    } else if (el && typeof document !== "undefined") {
+      el.focus();
+      el.select();
+      document.execCommand("copy");
+    } else {
+      alert(`Unable to copy: ${v}`);
+    }
+  } catch (err) {
+    console.log("copyToClipboard error", err.message || err);
+  }
+};
 
 export const toBoolean = (value) => {
   switch (value) {
@@ -95,7 +119,7 @@ export const markdownToHtml = (
   return result;
 };
 
-const getItemStyle = (isDragging, draggableStyle) => {
+export const getItemStyle = (isDragging, draggableStyle) => {
   let style = {
     userSelect: "none",
     ...draggableStyle,
@@ -107,7 +131,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
   return style;
 };
 
-const safeIdName = (text = "") =>
+export const safeIdName = (text = "") =>
   kebabCase(
     text
       .toString()
@@ -115,7 +139,7 @@ const safeIdName = (text = "") =>
       .replace(/\s\s+/g, " ")
   );
 
-const getListStyle = (isDraggingOver) => {
+export const getListStyle = (isDraggingOver) => {
   let style = {
     overflow: "hidden",
     background: isDraggingOver ? "#e7e7e7" : "none",
@@ -150,22 +174,12 @@ export const toLocaleDateString = (date = new Date(), format = "ll") => {
   return moment(date).format(format);
 };
 
-const isDate = (value) => {
+export const isDate = (value) => {
   const regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
   return value && regex.test(value) ? true : false;
 };
 
-const parseDate = (value) => {
-  if (moment.isMoment(value)) return value;
-  return moment(value, DATEFORMATS);
-};
-
-const isTime = (value) => {
-  const regex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
-  return value && regex.test(value) ? true : false;
-};
-
-const isHex = (h) => {
+export const isHex = (h) => {
   try {
     return /^#[0-9A-F]{6}$/i.test(h);
   } catch (err) {
@@ -173,7 +187,12 @@ const isHex = (h) => {
   }
 };
 
-const isExternalUrl = (url) => {
+export const isEmail = (data) => {
+  const regex = /^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?,)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$/;
+  return data && regex.test(data) ? true : false;
+};
+
+export const isExternalUrl = (url) => {
   if (!url || url === "") return false;
   let pattern = /^((http|https|ftp):\/\/)/;
   url = url.toString();
@@ -199,7 +218,7 @@ export const isEmpty = (value) => {
         if (Array.isArray(value)) {
           result = !value || value.length === 0 ? true : false;
         } else if (value) {
-          let entries = Object.entries(value);
+          //  let entries = Object.entries(value);
           result = !entries || entries.length === 0 ? true : false;
         } else {
           result = true;
@@ -219,10 +238,41 @@ export const isEmpty = (value) => {
   }
   return result;
 };
+
+export const isFunction = (o) => {
+  return o && typeof o === "function" ? true : false;
+};
+
+export const isTime = (value) => {
+  const regex = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/;
+  return value && regex.test(value) ? true : false;
+};
+
+export const isString = (o) => {
+  return o && typeof o === "string" ? true : false;
+};
+
+export const parseDate = (value) => {
+  if (moment.isMoment(value)) return value;
+  return moment(value, DATEFORMATS);
+};
+
 export const json2csv = (data, opts = {}) => {
   try {
     return json2csvParser(data, opts);
   } catch (err) {
     console.log("error while parsing json into csv", err);
   }
+};
+
+export const mongoObjectId = function () {
+  const timestamp = ((new Date().getTime() / 1000) | 0).toString(16);
+  return (
+    timestamp +
+    "xxxxxxxxxxxxxxxx"
+      .replace(/[x]/g, function () {
+        return ((Math.random() * 16) | 0).toString(16);
+      })
+      .toLowerCase()
+  );
 };
