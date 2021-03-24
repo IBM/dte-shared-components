@@ -3,7 +3,7 @@ Current functional version -- 4.0.0
 Framework :  React/Next -- Yarn
 
 ## NPM registry link : 
-https://www.npmjs.com/package/dte-shared-private
+https://www.npmjs.com/package/dte-shared-components
 
 Package include about 80 React components which are mainly drived from IBM Carbon desined components. https://www.carbondesignsystem.com/components/overview.
 
@@ -14,24 +14,24 @@ yarn add styled-components@4.3.2
 
 ## Getting started
 
-To install `dte-shared-private` in your project, you will need to run the
+To install `dte-shared-components` in your project, you will need to run the
 following command using [npm](https://www.npmjs.com/):
 
 ```bash
-npm install dte-shared-private
+npm install dte-shared-components
 ```
 
 If you prefer [Yarn](https://yarnpkg.com/en/), use the following command
 instead:
 
 ```bash
-yarn add dte-shared-private
+yarn add dte-shared-components
 ```
 
 ## Usage
 
 ```js
-import { Button } from 'dte-shared-private';
+import { Button } from 'dte-shared-components';
 
 function MyComponent() {
   return <Button>Example usage</Button>;
