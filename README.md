@@ -1,14 +1,13 @@
-Current functional version -- 4.0.0 
+Current functional version -- 4.0.0
 
-Framework :  React/Next -- Yarn
+Framework : React/Next -- Yarn
 
-## NPM registry link : 
+## NPM registry link :
+
 https://www.npmjs.com/package/dte-shared-components
 
-Package include about 80 React components which are mainly drived from IBM Carbon desined components. https://www.carbondesignsystem.com/components/overview.
-
-
 ## Important Note:
+
 In this package we are using styled-components with a fixed version of 4.3.2.
 yarn add styled-components@4.3.2
 
@@ -31,7 +30,7 @@ yarn add dte-shared-components
 ## Usage
 
 ```js
-import { Button } from 'dte-shared-components';
+import { Button } from "dte-shared-components";
 
 function MyComponent() {
   return <Button>Example usage</Button>;
@@ -40,7 +39,7 @@ function MyComponent() {
 
 For more information about each component, check out our
 [Storybook](https://react.carbondesignsystem.com). For guides on getting
-started. 
+started.
 
 ## 📚 Examples
 
@@ -55,7 +54,7 @@ have some examples that you can check out:
 
 We're always looking for contributors to help us fix bugs, build new features,
 or help us improve the project documentation. If you're interested, definitely
-check out your link for our repository  -- inprogress  👀
+check out your link for our repository -- inprogress 👀
 
 ## 📝 License
 
