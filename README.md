@@ -2,9 +2,11 @@ Current functional version -- 4.0.0
 
 Framework : React/Next -- Yarn
 
-## NPM registry link :
-
+### NPM registry link :
 https://www.npmjs.com/package/dte-shared-components
+
+### Storybook UI link :
+https://ibm.github.io/dte-shared-components
 
 ## Important Note:
 
@@ -54,7 +56,7 @@ have some examples that you can check out:
 
 We're always looking for contributors to help us fix bugs, build new features,
 or help us improve the project documentation. If you're interested, definitely
-check out your link for our repository -- inprogress 👀
+check out your link for our repository. 
 
 ## 📝 License
 
