@@ -2,7 +2,7 @@
   "name": "dte-shared-components",
   "version": "4.0.0",
   "description": "DTE Shared Components Private Repo ",
-  "homepage": "https://.github.io/dte-shared-components",
+  "homepage": "https://ibm.github.io/dte-shared-components",
   "main": "./lib/index.js",
   "scripts": {
     "build": "webpack",
