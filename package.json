@@ -2,11 +2,14 @@
   "name": "dte-shared-components",
   "version": "4.0.0",
   "description": "DTE Shared Components Private Repo ",
+  "homepage": "https://IBM.github.io/dte-shared-components",
   "main": "./lib/index.js",
   "scripts": {
     "build": "webpack",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "repository": {
     "type": "git",
@@ -38,6 +41,7 @@
     "css-loader": "^5.1.0",
     "file-saver": "^2.0.5",
     "formik": "^2.2.6",
+    "gh-pages": "^3.1.0",
     "iframe-resizer-react": "^1.1.0",
     "isomorphic-unfetch": "^3.1.0",
     "json2csv": "^5.0.5",
