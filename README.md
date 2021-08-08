@@ -1,11 +1,12 @@
+Welcome and checkout our React UI component. 
 Current functional version -- 4.0.0
 
-Framework : React/Next -- Yarn
+Framework : React | Next | Yarn
 
 ### NPM registry link :
 https://www.npmjs.com/package/dte-shared-components
 
-### Storybook UI link :
+### Storybook UI link (Visualization) :
 https://ibm.github.io/dte-shared-components
 
 ## Important Note:
